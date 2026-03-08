@@ -20,7 +20,7 @@ const AboutSection = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                src={aboutCollab}
                 alt="Students collaborating on campus"
                 className="rounded-xl h-48 w-full object-cover hover:scale-[1.03] transition-transform duration-500"
               />
