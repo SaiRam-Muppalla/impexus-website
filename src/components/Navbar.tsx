@@ -46,36 +46,28 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "glass shadow-[0_1px_20px_-4px_hsl(var(--primary)/0.1)] border-b border-border/50"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur shadow-sm" : "bg-background/80 backdrop-blur"} border-b border-border`}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         <div className="flex items-center gap-2">
           <span className="text-2xl font-heading font-bold tracking-tight">
-            <span className="gradient-text">i</span>MPEX
-            <span className="gradient-text">U</span>S
+            <span className="text-primary">i</span>MPEX
+            <span className="text-primary">U</span>S
           </span>
-          <span className="hidden sm:block text-[10px] text-muted-foreground tracking-[0.2em] ml-1">
-            ESCALATING THE EXCELLENCE
+          <span className="hidden sm:block text-[10px] text-muted-foreground tracking-widest">
+            - Escalating The Excellence -
           </span>
         </div>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className={`text-sm font-medium px-4 py-2 rounded-lg transition-all duration-300 ${
+              className={`text-sm font-medium transition-colors relative pb-1 ${
                 active === link.label
-                  ? "text-primary bg-primary/8"
-                  : scrolled
-                  ? "text-foreground/70 hover:text-primary hover:bg-primary/5"
-                  : "text-white/80 hover:text-white hover:bg-white/10"
+                  ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded"
+                  : "text-foreground/70 hover:text-primary"
               }`}
             >
               {link.label}
@@ -83,40 +75,26 @@ const Navbar = () => {
           ))}
         </div>
 
-        <button
-          className={`md:hidden p-2 rounded-lg transition-colors ${
-            scrolled ? "text-foreground hover:bg-muted" : "text-white hover:bg-white/10"
-          }`}
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
+        <button className="md:hidden" onClick={() => setOpen(!open)}>
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden bg-card/98 backdrop-blur-xl border-t border-border overflow-hidden transition-all duration-400 ${
-          open ? "max-h-96 py-4" : "max-h-0 py-0"
-        }`}
-      >
-        <div className="px-6 space-y-1">
+      <div className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300 ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}>
+        <div className="px-6 space-y-3">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className={`block text-sm font-medium px-4 py-2.5 rounded-lg transition-colors ${
-                active === link.label
-                  ? "text-primary bg-primary/8"
-                  : "text-foreground/70 hover:text-primary hover:bg-primary/5"
-              }`}
+              className={`block text-sm font-medium ${active === link.label ? "text-primary" : "text-foreground/70"}`}
             >
               {link.label}
             </a>
           ))}
-          <div className="flex gap-3 pt-4 px-4 border-t border-border mt-2">
+          <div className="flex gap-4 pt-3 border-t border-border">
             {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
-              <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors p-1">
+              <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Icon size={18} />
               </a>
             ))}

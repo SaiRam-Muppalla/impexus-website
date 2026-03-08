@@ -22,43 +22,39 @@ const BenefitsSection = () => {
   const { ref, isInView } = useInView(0.1);
 
   return (
-    <section ref={ref} className="py-24 px-6 section-alt">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+    <section ref={ref} className="py-20 px-6">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         <div className={`transition-all duration-700 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
-          <p className="text-primary font-medium tracking-[0.2em] uppercase text-xs mb-3">For Students</p>
-          <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6 tracking-tight">
-            Benefits for <span className="gradient-text">Students</span>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">For Students</p>
+          <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
+            Benefits for <span className="text-primary">Students</span>
           </h3>
-          <p className="text-muted-foreground mb-8 leading-relaxed">
+          <p className="text-muted-foreground mb-6">
             Students participating in Impexus programs build confidence and capability before entering the workforce.
           </p>
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {studentBenefits.map((b) => (
               <li key={b} className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5 shrink-0">
-                  <CheckCircle size={14} className="text-primary" />
-                </div>
-                <span className="text-sm text-foreground/80">{b}</span>
+                <CheckCircle size={18} className="text-primary mt-0.5 shrink-0" />
+                <span className="text-sm text-muted-foreground">{b}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <div className={`transition-all duration-700 delay-200 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
-          <p className="text-accent font-medium tracking-[0.2em] uppercase text-xs mb-3">For Institutions</p>
-          <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6 tracking-tight">
-            Institutional <span className="gradient-text">Collaboration</span>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">For Institutions</p>
+          <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
+            Institutional <span className="text-primary">Collaboration</span>
           </h3>
-          <p className="text-muted-foreground mb-8 leading-relaxed">
+          <p className="text-muted-foreground mb-6">
             Impexus collaborates with colleges and universities to build strong campus skill development ecosystems.
           </p>
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {partnerInitiatives.map((p) => (
               <li key={p} className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center mt-0.5 shrink-0">
-                  <CheckCircle size={14} className="text-accent" />
-                </div>
-                <span className="text-sm text-foreground/80">{p}</span>
+                <CheckCircle size={18} className="text-primary mt-0.5 shrink-0" />
+                <span className="text-sm text-muted-foreground">{p}</span>
               </li>
             ))}
           </ul>

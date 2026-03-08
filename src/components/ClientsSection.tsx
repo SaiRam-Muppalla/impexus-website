@@ -10,22 +10,19 @@ const logos = [
 
 const ClientsSection = () => {
   return (
-    <section className="py-20 px-6 overflow-hidden">
+    <section className="section-light py-16 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <p className="text-primary font-medium tracking-[0.2em] uppercase text-xs mb-3 text-center">Trusted By</p>
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground text-center mb-12 tracking-tight">
-          Our Clients & <span className="gradient-text">Partners</span>
+        <h2 className="text-3xl font-heading font-bold text-foreground text-center mb-10">
+          Our Clients & Brand Partners
         </h2>
         <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
-          <div className="flex animate-scroll-left w-max gap-16 items-center py-4">
+          <div className="flex animate-scroll-left w-max gap-12 items-center">
             {[...logos, ...logos].map((logo, i) => (
               <img
                 key={i}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+                className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all flex-shrink-0"
               />
             ))}
           </div>
