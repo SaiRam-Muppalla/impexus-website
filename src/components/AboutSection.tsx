@@ -1,5 +1,7 @@
 import { useInView } from "@/hooks/useInView";
 import { CheckCircle } from "lucide-react";
+import aboutCollab from "@/assets/about-collab.jpg";
+import aboutTeam from "@/assets/about-team.jpg";
 
 const focusAreas = [
   "Practical technical skills aligned with current industry demand",
