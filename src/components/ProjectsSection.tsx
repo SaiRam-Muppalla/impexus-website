@@ -1,57 +1,48 @@
+import { useInView } from "@/hooks/useInView";
+
+const projects = [
+  { title: "E-Commerce Platform", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" },
+  { title: "Learning Management System", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80" },
+  { title: "Health Tracker App", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" },
+  { title: "AI Chatbot", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" },
+];
+
 const ProjectsSection = () => {
-  const projects = [
-    {
-      title: "Project Showcase",
-      desc: "Experience immersive learning through collaborative project development.",
-      img: "https://images.unsplash.com/photo-1525034405510-833d4c7444a8?auto=format&fit=crop&w=500&h=360",
-    },
-    {
-      title: "Explore",
-      desc: "Hands-on coding projects to build real-world skills.",
-      img: "https://images.unsplash.com/photo-1696834137451-f52f471a58bc?auto=format&fit=crop&w=500&h=360",
-    },
-    {
-      title: "Future Leaders",
-      desc: "Join us in creating impactful solutions through teamwork.",
-      img: "https://images.unsplash.com/photo-1504384118609-1b1bd5e1ff15?auto=format&fit=crop&w=500&h=360",
-    },
-    {
-      title: "Innovation",
-      desc: "Developing tomorrow's technology leaders today.",
-      img: "https://images.unsplash.com/photo-1581726690015-c9861fa5057f?auto=format&fit=crop&w=500&h=360",
-    },
-  ];
+  const { ref, isInView } = useInView(0.1);
 
   return (
-    <section id="programs" className="py-20 px-6">
+    <section ref={ref} className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-            Innovative Projects
+        <div className={`text-center mb-12 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">Portfolio</p>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+            Student <span className="text-primary">Projects</span>
           </h2>
-          <p className="text-muted-foreground">
-            Explore hands-on projects that foster real-world programming skills.
-          </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {projects.map((p) => (
-            <div key={p.title} className="rounded-xl overflow-hidden bg-card border border-border group hover:shadow-lg transition-all">
-              <div className="overflow-hidden">
-                <img src={p.img} alt={p.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {projects.map((p, i) => (
+            <div
+              key={p.title}
+              className={`group rounded-xl overflow-hidden border border-border transition-all duration-700 hover:shadow-lg ${
+                isInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              }`}
+              style={{ transitionDelay: isInView ? `${i * 100}ms` : "0ms" }}
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300" />
               </div>
-              <div className="p-4">
-                <h3 className="font-heading font-semibold text-foreground mb-1">{p.title}</h3>
-                <p className="text-sm text-muted-foreground">{p.desc}</p>
+              <div className="p-4 bg-card">
+                <h3 className="font-heading font-semibold text-foreground text-sm">{p.title}</h3>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <a href="#contact" className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-md font-medium hover:bg-primary/90 transition-colors">
-            Join
-          </a>
         </div>
       </div>
     </section>
