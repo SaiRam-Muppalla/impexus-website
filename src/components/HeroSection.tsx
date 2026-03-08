@@ -1,5 +1,6 @@
 import { useInView } from "@/hooks/useInView";
 import { GraduationCap, Building2, Rocket } from "lucide-react";
+import heroCampus from "@/assets/hero-campus.jpg";
 
 const features = [
   { icon: GraduationCap, title: "Campus Programs", desc: "Structured, industry-aligned skill development programs delivered within academic institutions." },
