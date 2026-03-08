@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 
 const testimonials = [
@@ -18,11 +18,11 @@ const TestimonialsSection = () => {
   const { ref, isInView } = useInView(0.15);
 
   return (
-    <section ref={ref} className="py-20 px-6 relative">
+    <section ref={ref} className="py-24 px-6 relative">
       <img
         src="https://images.unsplash.com/photo-1634836023845-eddbfe9937da?auto=format&fit=crop&w=1920&q=60"
         alt="Background"
-        className="absolute inset-0 w-full h-full object-cover opacity-10"
+        className="absolute inset-0 w-full h-full object-cover opacity-5"
         loading="lazy"
       />
       <div className="relative max-w-4xl mx-auto">
@@ -37,19 +37,24 @@ const TestimonialsSection = () => {
           {testimonials.map((t, i) => (
             <div
               key={t.name}
-              className={`testimonial-card rounded-xl p-8 text-center shadow-sm border border-border transition-all duration-700 ${
+              className={`testimonial-card rounded-2xl p-8 shadow-sm border border-border relative overflow-hidden transition-all duration-700 hover:shadow-md ${
                 isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: isInView ? `${i * 150}ms` : "0ms" }}
             >
-              <div className="flex justify-center mb-4">
-                {Array(5).fill(0).map((_, i) => (
-                  <Star key={i} size={18} className="text-primary fill-primary" />
-                ))}
+              <Quote size={40} className="text-primary/10 absolute top-4 right-4" />
+              <div className="flex items-center gap-4 mb-5">
+                <img src={t.img} alt={t.name} className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20" loading="lazy" />
+                <div>
+                  <p className="font-heading font-semibold text-foreground">{t.name}</p>
+                  <div className="flex mt-1">
+                    {Array(5).fill(0).map((_, j) => (
+                      <Star key={j} size={14} className="text-primary fill-primary" />
+                    ))}
+                  </div>
+                </div>
               </div>
-              <p className="text-muted-foreground italic mb-6">"{t.text}"</p>
-              <img src={t.img} alt={t.name} className="w-16 h-16 rounded-full mx-auto mb-3 object-cover" loading="lazy" />
-              <p className="font-heading font-semibold text-foreground">{t.name}</p>
+              <p className="text-muted-foreground italic leading-relaxed">"{t.text}"</p>
             </div>
           ))}
         </div>

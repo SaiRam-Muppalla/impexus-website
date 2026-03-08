@@ -45,7 +45,7 @@ const FAQSection = () => {
   const { ref, isInView } = useInView(0.1);
 
   return (
-    <section ref={ref} className="py-20 px-6">
+    <section ref={ref} className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <div
           className={`text-center mb-12 transition-all duration-700 ${
@@ -70,12 +70,15 @@ const FAQSection = () => {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="border border-border rounded-xl px-5 data-[state=open]:bg-primary/5"
+                className="border border-border rounded-xl px-5 data-[state=open]:bg-primary/5 data-[state=open]:border-primary/20 transition-colors duration-300"
               >
-                <AccordionTrigger className="text-left text-sm font-medium text-foreground hover:text-primary hover:no-underline">
-                  {faq.q}
+                <AccordionTrigger className="text-left text-sm font-medium text-foreground hover:text-primary hover:no-underline py-4">
+                  <span className="flex items-start gap-3">
+                    <span className="text-primary font-heading font-bold text-xs mt-0.5">0{i + 1}</span>
+                    {faq.q}
+                  </span>
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-7">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

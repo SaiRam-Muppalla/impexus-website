@@ -39,14 +39,17 @@ const StatsSection = () => {
   return (
     <section ref={ref} className="py-16 px-6 bg-primary">
       <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        {stats.map((stat) => (
+        {stats.map((stat, i) => (
           <div
             key={stat.label}
             className={`flex flex-col items-center gap-2 transition-all duration-700 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+            } ${i < stats.length - 1 ? "md:border-r md:border-primary-foreground/20" : ""}`}
+            style={{ transitionDelay: isInView ? `${i * 100}ms` : "0ms" }}
           >
-            <stat.icon size={36} className="text-primary-foreground/80" />
+            <div className="w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center mb-1">
+              <stat.icon size={28} className="text-primary-foreground" />
+            </div>
             <p className="text-3xl md:text-4xl font-heading font-bold text-primary-foreground">
               <AnimatedCounter target={stat.value} suffix={stat.suffix} start={isInView} />
             </p>
