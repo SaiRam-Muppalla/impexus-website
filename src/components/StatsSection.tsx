@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useInView } from "@/hooks/useInView";
-import { Users, FolderOpen, UserCheck, Handshake } from "lucide-react";
+import { Users, GraduationCap, Building2, Handshake } from "lucide-react";
 
 const stats = [
   { icon: Users, value: 500, suffix: "+", label: "Students Trained" },
-  { icon: FolderOpen, value: 50, suffix: "+", label: "Projects Delivered" },
-  { icon: UserCheck, value: 20, suffix: "+", label: "Expert Mentors" },
-  { icon: Handshake, value: 10, suffix: "+", label: "Industry Partners" },
+  { icon: GraduationCap, value: 95, suffix: "%", label: "Placement Rate" },
+  { icon: Building2, value: 20, suffix: "+", label: "College Partners" },
+  { icon: Handshake, value: 50, suffix: "+", label: "Industry Programs" },
 ];
 
 function AnimatedCounter({ target, suffix, start }: { target: number; suffix: string; start: boolean }) {
