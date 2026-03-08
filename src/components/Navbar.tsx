@@ -86,14 +86,15 @@ const Navbar = () => {
       </div>
 
       {/* Scroll progress bar */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border">
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border pointer-events-none">
         <div
           className="h-full bg-primary transition-[width] duration-100 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-      <div className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300 ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}>
+      {open && (
+        <div className="md:hidden border-t border-border bg-background py-4">
         <div className="px-6 space-y-3">
           {navLinks.map((link) => (
             <a
