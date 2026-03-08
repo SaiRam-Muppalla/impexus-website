@@ -22,7 +22,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
         <div className={`transition-all duration-1000 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Campus Learning & Development</p>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4 animate-pulse">Campus Learning & Development</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
             Empowering Future <br />
             <span className="text-primary">Tech Leaders</span>
@@ -31,10 +31,18 @@ const HeroSection = () => {
             Impexus partners with colleges and universities to deliver structured, industry-aligned skill development programs — enabling students to bridge the gap between education and industry.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <a href="#services" onClick={(e) => { e.preventDefault(); document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }); }} className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+            <a
+              href="#services"
+              onClick={(e) => { e.preventDefault(); document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }); }}
+              className="bg-primary text-primary-foreground px-8 py-3.5 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
+            >
               Explore Programs
             </a>
-            <a href="#contact" onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }} className="border border-white/30 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors">
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+              className="border border-white/30 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-white/10 hover:border-white/50 transition-all duration-300 hover:-translate-y-0.5"
+            >
               Partner With Us
             </a>
           </div>
@@ -44,7 +52,7 @@ const HeroSection = () => {
           {features.map((f, i) => (
             <div
               key={f.title}
-              className={`feature-card rounded-xl p-6 text-left border border-white/10 transition-all duration-700 ${
+              className={`feature-card rounded-xl p-6 text-left border border-white/10 transition-all duration-700 hover:border-primary/30 hover:-translate-y-1 ${
                 isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: isInView ? `${300 + i * 150}ms` : "0ms" }}
@@ -54,6 +62,13 @@ const HeroSection = () => {
               <p className="text-white/60 text-sm">{f.desc}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-1000 delay-1000 ${isInView ? "opacity-100" : "opacity-0"}`}>
+        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-1.5">
+          <div className="w-1.5 h-2.5 rounded-full bg-white/60 animate-bounce" />
         </div>
       </div>
     </section>

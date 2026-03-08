@@ -1,4 +1,5 @@
 import { useInView } from "@/hooks/useInView";
+import { ArrowDown } from "lucide-react";
 
 const layers = [
   {
@@ -36,7 +37,7 @@ const ProgramArchitectureSection = () => {
   const { ref, isInView } = useInView(0.1);
 
   return (
-    <section ref={ref} className="py-20 px-6">
+    <section ref={ref} className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <div className={`text-center mb-12 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">Learning Architecture</p>
@@ -48,17 +49,23 @@ const ProgramArchitectureSection = () => {
           </p>
         </div>
 
-        <div className="space-y-3 mb-16">
+        <div className="space-y-2 mb-16">
           {layers.map((layer, i) => (
-            <div
-              key={layer.title}
-              className={`rounded-xl bg-gradient-to-r ${layer.color} p-5 text-primary-foreground transition-all duration-700 ${
-                isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-              }`}
-              style={{ transitionDelay: isInView ? `${i * 150}ms` : "0ms" }}
-            >
-              <h3 className="font-heading font-bold text-sm md:text-base uppercase tracking-wide mb-1">{layer.title}</h3>
-              <p className="text-xs md:text-sm opacity-90">{layer.items}</p>
+            <div key={layer.title}>
+              <div
+                className={`rounded-xl bg-gradient-to-r ${layer.color} p-6 text-primary-foreground transition-all duration-700 hover:scale-[1.02] ${
+                  isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                }`}
+                style={{ transitionDelay: isInView ? `${i * 150}ms` : "0ms" }}
+              >
+                <h3 className="font-heading font-bold text-sm md:text-base uppercase tracking-wide mb-1">{layer.title}</h3>
+                <p className="text-xs md:text-sm opacity-90">{layer.items}</p>
+              </div>
+              {i < layers.length - 1 && (
+                <div className="flex justify-center py-1">
+                  <ArrowDown size={16} className="text-primary/40" />
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -68,9 +75,12 @@ const ProgramArchitectureSection = () => {
             Program <span className="text-primary">Formats</span>
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {formats.map((f) => (
-              <div key={f} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
-                <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
+            {formats.map((f, i) => (
+              <div
+                key={f}
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 hover:border-primary/30 hover:shadow-sm transition-all duration-300"
+              >
+                <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary shrink-0">{i + 1}</span>
                 <span className="text-sm text-foreground">{f}</span>
               </div>
             ))}

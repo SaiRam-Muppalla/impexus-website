@@ -13,9 +13,14 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -46,7 +51,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur shadow-sm" : "bg-background/80 backdrop-blur"} border-b border-border`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-background/80 backdrop-blur-sm"} border-b border-border`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         <div className="flex items-center gap-2">
           <span className="text-2xl font-heading font-bold tracking-tight">
@@ -64,7 +69,7 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className={`text-sm font-medium transition-colors relative pb-1 ${
+              className={`text-sm font-medium transition-all duration-300 relative pb-1 ${
                 active === link.label
                   ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded"
                   : "text-foreground/70 hover:text-primary"
@@ -75,9 +80,17 @@ const Navbar = () => {
           ))}
         </div>
 
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
+        <button className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors" onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
+      </div>
+
+      {/* Scroll progress bar */}
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border">
+        <div
+          className="h-full bg-primary transition-[width] duration-100 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
       </div>
 
       <div className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300 ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}>
@@ -87,7 +100,7 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className={`block text-sm font-medium ${active === link.label ? "text-primary" : "text-foreground/70"}`}
+              className={`block text-sm font-medium py-1 transition-colors ${active === link.label ? "text-primary" : "text-foreground/70"}`}
             >
               {link.label}
             </a>
