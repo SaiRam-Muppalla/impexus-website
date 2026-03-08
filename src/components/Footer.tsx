@@ -24,10 +24,16 @@ const Footer = () => {
         <div>
           <h4 className="font-heading font-semibold mb-4 text-sm tracking-wide uppercase opacity-90">Quick Links</h4>
           <ul className="space-y-2.5 text-sm opacity-70">
-            {["Home", "About", "Services", "Why Us", "Contact"].map((l) => (
-              <li key={l}>
-                <a href={`#${l.toLowerCase().replace(" ", "-")}`} className="hover:text-primary hover:translate-x-1 transition-all duration-200 inline-block">
-                  {l}
+            {[
+              { label: "Home", href: "#home" },
+              { label: "About", href: "#about" },
+              { label: "Services", href: "#services" },
+              { label: "Why Us", href: "#programs" },
+              { label: "Contact", href: "#contact" },
+            ].map((l) => (
+              <li key={l.label}>
+                <a href={l.href} className="hover:text-primary hover:translate-x-1 transition-all duration-200 inline-block">
+                  {l.label}
                 </a>
               </li>
             ))}

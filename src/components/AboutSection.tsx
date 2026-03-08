@@ -39,6 +39,7 @@ const AboutSection = () => {
                 src={aboutTeam}
                 alt="Team working together"
                 className="rounded-xl h-48 w-full object-cover hover:scale-[1.03] transition-transform duration-500"
+                loading="lazy"
               />
             </div>
           </div>
