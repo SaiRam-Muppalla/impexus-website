@@ -95,23 +95,24 @@ const Navbar = () => {
 
       {open && (
         <div className="md:hidden border-t border-border bg-background py-4">
-        <div className="px-6 space-y-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleClick(e, link.href)}
-              className={`block text-sm font-medium py-1 transition-colors ${active === link.label ? "text-primary" : "text-foreground/70"}`}
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="flex gap-4 pt-3 border-t border-border">
-            {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
-              <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Icon size={18} />
+          <div className="px-6 space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleClick(e, link.href)}
+                className={`block text-sm font-medium py-1 transition-colors ${active === link.label ? "text-primary" : "text-foreground/70"}`}
+              >
+                {link.label}
               </a>
             ))}
+            <div className="flex gap-4 pt-3 border-t border-border">
+              {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
+                <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}
