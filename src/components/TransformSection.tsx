@@ -1,40 +1,40 @@
+import { useInView } from "@/hooks/useInView";
+import { Target, Rocket, Award, Zap } from "lucide-react";
+
+const cards = [
+  { icon: Target, title: "Expert Mentorship", desc: "Learn directly from seasoned professionals with years of industry experience." },
+  { icon: Rocket, title: "Project-Based Learning", desc: "Build real-world applications that strengthen your portfolio and confidence." },
+  { icon: Award, title: "Industry Certification", desc: "Earn recognized certifications that validate your skills to employers." },
+  { icon: Zap, title: "Career Support", desc: "Get dedicated placement assistance, resume reviews, and interview prep." },
+];
+
 const TransformSection = () => {
+  const { ref, isInView } = useInView(0.15);
+
   return (
-    <section className="section-light py-20 px-6">
+    <section id="programs" ref={ref} className="py-20 px-6 section-light">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-            Transforming Education, Shaping Leaders
+        <div className={`text-center mb-12 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">Why Choose Us</p>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+            Transform Your <span className="text-primary">Career</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Impexus Technologies is moving forward with a mission to create critical thinkers and problem solvers through industry-driven curriculum, expert mentorship, and hands-on experience.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            {
-              title: "Expert Mentorship Provided",
-              desc: "Guiding students with industry insights and personalized support for their career growth.",
-              img: "https://images.unsplash.com/photo-1697136660379-868f1019c5bc?auto=format&fit=crop&w=500&h=350",
-            },
-            {
-              title: "Project-Based Learning",
-              desc: "Engaging students in real-world projects to develop critical thinking and problem-solving skills.",
-              img: "https://images.unsplash.com/photo-1701701046353-89f1a671c24b?auto=format&fit=crop&w=500&h=350",
-            },
-            {
-              title: "Innovative Curriculum Design",
-              desc: "Tailored programs that foster creativity and leadership in technology and programming.",
-              img: "https://images.unsplash.com/photo-1582110331670-c5878f53bd3c?auto=format&fit=crop&w=500&h=350",
-            },
-          ].map((item) => (
-            <div key={item.title} className="bg-card rounded-xl overflow-hidden shadow-sm border border-border group hover:shadow-md transition-shadow">
-              <img src={item.img} alt={item.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="p-5">
-                <h3 className="font-heading font-semibold text-foreground mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {cards.map((card, i) => (
+            <div
+              key={card.title}
+              className={`rounded-xl border border-border bg-card p-6 text-center hover:shadow-md transition-all duration-700 hover:-translate-y-1 ${
+                isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: isInView ? `${i * 100}ms` : "0ms" }}
+            >
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <card.icon size={24} className="text-primary" />
               </div>
+              <h3 className="font-heading font-semibold text-foreground mb-2">{card.title}</h3>
+              <p className="text-sm text-muted-foreground">{card.desc}</p>
             </div>
           ))}
         </div>
