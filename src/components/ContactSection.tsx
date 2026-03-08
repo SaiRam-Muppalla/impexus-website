@@ -12,6 +12,7 @@ const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().email("Invalid email address").max(255),
   phone: z.string().trim().min(10, "Phone number must be at least 10 digits").max(15).regex(/^[+\d\s-]+$/, "Invalid phone number"),
+  institution: z.string().trim().min(1, "Institution name is required").max(200),
   message: z.string().trim().min(1, "Message is required").max(1000),
 });
 
@@ -32,10 +33,10 @@ const ContactSection = () => {
     <section id="contact" ref={ref} className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-4 text-foreground">
-          Get In <span className="text-primary">Touch</span>
+          Partner With <span className="text-primary">Impexus</span>
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          Colleges and institutions interested in introducing industry-focused technology learning programs can collaborate with us to create impactful student skill development initiatives.
         </p>
 
         <div className={`grid md:grid-cols-5 gap-10 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
@@ -80,12 +81,18 @@ const ContactSection = () => {
                 {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
               </div>
             </div>
-            <div>
-              <Input placeholder="Phone Number" {...register("phone")} />
-              {errors.phone && <p className="text-xs text-destructive mt-1">{errors.phone.message}</p>}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <Input placeholder="Phone Number" {...register("phone")} />
+                {errors.phone && <p className="text-xs text-destructive mt-1">{errors.phone.message}</p>}
+              </div>
+              <div>
+                <Input placeholder="Institution / College Name" {...register("institution")} />
+                {errors.institution && <p className="text-xs text-destructive mt-1">{errors.institution.message}</p>}
+              </div>
             </div>
             <div>
-              <Textarea placeholder="Your Message" rows={5} {...register("message")} />
+              <Textarea placeholder="Tell us about your requirements..." rows={5} {...register("message")} />
               {errors.message && <p className="text-xs text-destructive mt-1">{errors.message.message}</p>}
             </div>
             <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto gap-2">

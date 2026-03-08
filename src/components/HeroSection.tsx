@@ -1,10 +1,10 @@
 import { useInView } from "@/hooks/useInView";
-import { BookOpen, Users, Lightbulb } from "lucide-react";
+import { GraduationCap, Building2, Rocket } from "lucide-react";
 
 const features = [
-  { icon: BookOpen, title: "Learn", desc: "Master in-demand skills with structured, industry-aligned curricula." },
-  { icon: Users, title: "Collaborate", desc: "Work alongside peers and mentors on real-world team projects." },
-  { icon: Lightbulb, title: "Innovate", desc: "Turn ideas into impactful solutions through hands-on experience." },
+  { icon: GraduationCap, title: "Campus Programs", desc: "Structured, industry-aligned skill development programs delivered within academic institutions." },
+  { icon: Building2, title: "Industry Partnership", desc: "Bridging the gap between classroom learning and real-world technology careers." },
+  { icon: Rocket, title: "Career Readiness", desc: "From coding foundations to placement preparation — building job-ready graduates." },
 ];
 
 const HeroSection = () => {
@@ -13,8 +13,8 @@ const HeroSection = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <img
-        src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80"
-        alt="Technology background"
+        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
+        alt="Students in campus learning environment"
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
       />
@@ -22,20 +22,20 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
         <div className={`transition-all duration-1000 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Escalating The Excellence</p>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Campus Learning & Development</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
             Empowering Future <br />
             <span className="text-primary">Tech Leaders</span>
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto text-lg mb-10">
-            Join Impexus Technologies and transform your passion for technology into real-world expertise through hands-on learning and mentorship.
+            Impexus partners with colleges and universities to deliver structured, industry-aligned skill development programs — enabling students to bridge the gap between education and industry.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <a href="#courses" onClick={(e) => { e.preventDefault(); document.querySelector("#courses")?.scrollIntoView({ behavior: "smooth" }); }} className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              Explore Courses
+            <a href="#services" onClick={(e) => { e.preventDefault(); document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }); }} className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+              Explore Programs
             </a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" }); }} className="border border-white/30 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors">
-              Learn More
+            <a href="#contact" onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }} className="border border-white/30 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors">
+              Partner With Us
             </a>
           </div>
         </div>

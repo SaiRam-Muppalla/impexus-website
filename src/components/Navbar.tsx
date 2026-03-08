@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingCart, Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
+import { Menu, X, Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Courses", href: "#courses" },
+  { label: "Services", href: "#services" },
+  { label: "Why Us", href: "#programs" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -73,9 +73,6 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <a href="#" className="flex items-center gap-1 text-sm text-foreground/70 hover:text-primary transition-colors">
-            <ShoppingCart size={16} /> My Cart
-          </a>
         </div>
 
         <button className="md:hidden" onClick={() => setOpen(!open)}>

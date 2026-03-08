@@ -10,16 +10,16 @@ const Footer = () => {
             <span className="text-primary">U</span>S
           </span>
           <p className="text-sm opacity-70 mt-3">
-            Empowering students through hands-on programming experiences and industry-aligned education.
+            Campus Learning & Development platform partnering with colleges to deliver industry-aligned skill development programs.
           </p>
         </div>
 
         <div>
           <h4 className="font-heading font-semibold mb-4">Quick Links</h4>
           <ul className="space-y-2 text-sm opacity-70">
-            {["Home", "About", "Programs", "Courses", "Contact"].map((l) => (
+            {["Home", "About", "Services", "Why Us", "Contact"].map((l) => (
               <li key={l}>
-                <a href={`#${l.toLowerCase()}`} className="hover:text-primary transition-colors">
+                <a href={`#${l.toLowerCase().replace(" ", "-")}`} className="hover:text-primary transition-colors">
                   {l}
                 </a>
               </li>
@@ -30,7 +30,7 @@ const Footer = () => {
         <div>
           <h4 className="font-heading font-semibold mb-4">Programs</h4>
           <ul className="space-y-2 text-sm opacity-70">
-            {["Web Development", "Python", "Data Science", "App Development"].map((p) => (
+            {["Full Stack Development", "AI & Machine Learning", "Cloud & DevOps", "Placement Preparation", "Cybersecurity", "Mobile Development"].map((p) => (
               <li key={p}>{p}</li>
             ))}
           </ul>
