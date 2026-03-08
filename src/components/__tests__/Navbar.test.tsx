@@ -5,7 +5,7 @@ import Navbar from "../Navbar";
 describe("Navbar", () => {
   it("renders the brand name", () => {
     render(<Navbar />);
-    expect(screen.getByText("MPEX")).toBeInTheDocument();
+    expect(screen.getByText((_, el) => el?.textContent === "iMPEXUS")).toBeInTheDocument();
   });
 
   it("renders all navigation links", () => {

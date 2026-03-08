@@ -5,7 +5,7 @@ import Footer from "../Footer";
 describe("Footer", () => {
   it("renders brand name", () => {
     render(<Footer />);
-    expect(screen.getByText("MPEX")).toBeInTheDocument();
+    expect(screen.getByText((_, el) => el?.textContent === "iMPEXUS")).toBeInTheDocument();
   });
 
   it("renders quick links pointing to correct sections", () => {
