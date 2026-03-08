@@ -1,11 +1,15 @@
 import { useInView } from "@/hooks/useInView";
 import { ExternalLink } from "lucide-react";
+import projectEcommerce from "@/assets/project-ecommerce.jpg";
+import projectLms from "@/assets/project-lms.jpg";
+import projectHealth from "@/assets/project-health.jpg";
+import projectChatbot from "@/assets/project-chatbot.jpg";
 
 const projects = [
-  { title: "E-Commerce Platform", category: "Full Stack", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" },
-  { title: "Learning Management System", category: "Web App", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80" },
-  { title: "Health Tracker App", category: "Mobile", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" },
-  { title: "AI Chatbot", category: "AI / ML", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" },
+  { title: "E-Commerce Platform", category: "Full Stack", img: projectEcommerce },
+  { title: "Learning Management System", category: "Web App", img: projectLms },
+  { title: "Health Tracker App", category: "Mobile", img: projectHealth },
+  { title: "AI Chatbot", category: "AI / ML", img: projectChatbot },
 ];
 
 const ProjectsSection = () => {

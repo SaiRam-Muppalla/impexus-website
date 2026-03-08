@@ -1,5 +1,7 @@
 import { useInView } from "@/hooks/useInView";
 import { CheckCircle } from "lucide-react";
+import aboutCollab from "@/assets/about-collab.jpg";
+import aboutTeam from "@/assets/about-team.jpg";
 
 const focusAreas = [
   "Practical technical skills aligned with current industry demand",
@@ -18,7 +20,7 @@ const AboutSection = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                src={aboutCollab}
                 alt="Students collaborating on campus"
                 className="rounded-xl h-48 w-full object-cover hover:scale-[1.03] transition-transform duration-500"
               />
@@ -33,7 +35,7 @@ const AboutSection = () => {
                 <p className="text-xs text-muted-foreground">Students Trained</p>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+                src={aboutTeam}
                 alt="Team working together"
                 className="rounded-xl h-48 w-full object-cover hover:scale-[1.03] transition-transform duration-500"
               />
