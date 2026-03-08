@@ -35,7 +35,7 @@ const AboutSection = () => {
                 <p className="text-xs text-muted-foreground">Students Trained</p>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+                src={aboutTeam}
                 alt="Team working together"
                 className="rounded-xl h-48 w-full object-cover hover:scale-[1.03] transition-transform duration-500"
               />
