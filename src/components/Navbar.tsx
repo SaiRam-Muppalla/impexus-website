@@ -86,34 +86,36 @@ const Navbar = () => {
       </div>
 
       {/* Scroll progress bar */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border">
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border pointer-events-none">
         <div
           className="h-full bg-primary transition-[width] duration-100 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-      <div className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300 ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}>
-        <div className="px-6 space-y-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleClick(e, link.href)}
-              className={`block text-sm font-medium py-1 transition-colors ${active === link.label ? "text-primary" : "text-foreground/70"}`}
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="flex gap-4 pt-3 border-t border-border">
-            {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
-              <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Icon size={18} />
+      {open && (
+        <div className="md:hidden border-t border-border bg-background py-4">
+          <div className="px-6 space-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleClick(e, link.href)}
+                className={`block text-sm font-medium py-1 transition-colors ${active === link.label ? "text-primary" : "text-foreground/70"}`}
+              >
+                {link.label}
               </a>
             ))}
+            <div className="flex gap-4 pt-3 border-t border-border">
+              {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
+                <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

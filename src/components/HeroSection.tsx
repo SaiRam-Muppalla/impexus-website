@@ -23,7 +23,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
         <div className={`transition-all duration-1000 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4 animate-pulse">Campus Learning & Development</p>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Campus Learning & Development</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
             Empowering Future <br />
             <span className="text-primary">Tech Leaders</span>

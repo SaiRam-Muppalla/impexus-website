@@ -23,6 +23,7 @@ const AboutSection = () => {
                 src={aboutCollab}
                 alt="Students collaborating on campus"
                 className="rounded-xl h-48 w-full object-cover hover:scale-[1.03] transition-transform duration-500"
+                loading="lazy"
               />
               <div className="bg-primary/10 rounded-xl p-4 text-center">
                 <p className="text-2xl font-heading font-bold text-primary">5+</p>
@@ -38,6 +39,7 @@ const AboutSection = () => {
                 src={aboutTeam}
                 alt="Team working together"
                 className="rounded-xl h-48 w-full object-cover hover:scale-[1.03] transition-transform duration-500"
+                loading="lazy"
               />
             </div>
           </div>
