@@ -28,6 +28,7 @@ const Index = () => {
       <TechStackSection />
       <TransformSection />
       <BenefitsSection />
+      <VisionSection />
       <ProjectsSection />
       <ClientsSection />
       <TestimonialsSection />
