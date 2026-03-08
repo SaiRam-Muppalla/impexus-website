@@ -37,20 +37,28 @@ const StatsSection = () => {
   const { ref, isInView } = useInView(0.3);
 
   return (
-    <section ref={ref} className="py-16 px-6 bg-primary">
-      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        {stats.map((stat) => (
+    <section ref={ref} className="relative py-20 px-6 overflow-hidden">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground/95 to-primary/30" />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/10 blur-[120px]" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-accent/10 blur-[100px]" />
+
+      <div className="relative max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {stats.map((stat, i) => (
           <div
             key={stat.label}
-            className={`flex flex-col items-center gap-2 transition-all duration-700 ${
+            className={`flex flex-col items-center gap-3 transition-all duration-700 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
+            style={{ transitionDelay: isInView ? `${i * 100}ms` : "0ms" }}
           >
-            <stat.icon size={36} className="text-primary-foreground/80" />
-            <p className="text-3xl md:text-4xl font-heading font-bold text-primary-foreground">
+            <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-sm">
+              <stat.icon size={26} className="text-primary-foreground/80" />
+            </div>
+            <p className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground tracking-tight">
               <AnimatedCounter target={stat.value} suffix={stat.suffix} start={isInView} />
             </p>
-            <p className="text-sm text-primary-foreground/70">{stat.label}</p>
+            <p className="text-sm text-primary-foreground/50 font-medium">{stat.label}</p>
           </div>
         ))}
       </div>
