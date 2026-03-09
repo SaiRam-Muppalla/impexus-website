@@ -92,13 +92,6 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <div className="flex gap-4 pt-3 border-t border-border">
-            {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
-              <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </nav>
