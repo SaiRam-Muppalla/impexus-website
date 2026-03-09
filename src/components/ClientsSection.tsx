@@ -1,35 +1,24 @@
-import { useInView } from "@/hooks/useInView";
+const logos = [
+  { src: "/logos/aicte.png", alt: "AICTE" },
+  { src: "/logos/apssdc.png", alt: "APSSDC" },
+  { src: "/logos/task.jpg", alt: "TASK" },
+  { src: "/logos/microsoft.svg", alt: "Microsoft" },
+  { src: "/logos/google.svg", alt: "Google" },
+  { src: "/logos/anthropic.svg", alt: "Anthropic" },
+];
 
-const partners = [
-  {
-    category: "Government & Skill Bodies",
-    logos: [
-      { name: "MSME", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Emblem_of_India.svg/200px-Emblem_of_India.svg.png" },
-      { name: "AICTE", url: "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/All_India_Council_for_Technical_Education_logo.png/220px-All_India_Council_for_Technical_Education_logo.png" },
-      { name: "APSCHE", url: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Emblem_of_Andhra_Pradesh.svg/150px-Emblem_of_Andhra_Pradesh.svg.png" },
-      { name: "APSDC", url: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Emblem_of_Andhra_Pradesh.svg/150px-Emblem_of_Andhra_Pradesh.svg.png" },
-      { name: "NSDC", url: "https://upload.wikimedia.org/wikipedia/en/thumb/5/57/National_Skill_Development_Corporation_%28logo%29.png/220px-National_Skill_Development_Corporation_%28logo%29.png" },
-      { name: "TASK", url: "https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Emblem_of_Telangana.svg/150px-Emblem_of_Telangana.svg.png" },
-    ],
-  },
-  {
-    category: "Technology Partners",
-    logos: [
-      { name: "Microsoft", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/320px-Microsoft_logo_%282012%29.svg.png" },
-      { name: "Google", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/320px-Google_2015_logo.svg.png" },
-      { name: "Anthropic", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/320px-Anthropic_logo.svg.png" },
-      { name: "Lovable", url: "https://lovable.dev/lovable-logo.png" },
-    ],
-  },
+const textLogos = [
+  { name: "MSME", subtitle: "Govt. of India" },
+  { name: "APSCHE", subtitle: "Andhra Pradesh" },
+  { name: "NSDC", subtitle: "Skill India" },
+  { name: "Lovable", subtitle: "AI Platform" },
 ];
 
 const ClientsSection = () => {
-  const { ref, isInView } = useInView(0.1);
-
   return (
-    <section ref={ref} className="py-20 px-6 section-light">
+    <section className="py-20 px-6 section-light overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className={`text-center mb-14 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="text-center mb-14">
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">Trusted By</p>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
             Our Partners & <span className="text-primary">Collaborators</span>
@@ -39,38 +28,38 @@ const ClientsSection = () => {
           </p>
         </div>
 
-        {partners.map((group, gi) => (
-          <div
-            key={group.category}
-            className={`mb-12 last:mb-0 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-            style={{ transitionDelay: isInView ? `${gi * 200}ms` : "0ms" }}
-          >
-            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest text-center mb-8">
-              {group.category}
-            </h3>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              {group.logos.map((logo, i) => (
+        {/* Scrolling logo strip */}
+        <div className="relative overflow-hidden">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[hsl(var(--section-dark))] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[hsl(var(--section-dark))] to-transparent z-10" />
+
+          <div className="flex animate-scroll-left w-max gap-10 items-center py-4">
+            {[...logos, ...textLogos.map(t => t), ...logos, ...textLogos.map(t => t)].map((item, i) => (
+              "src" in item ? (
                 <div
-                  key={logo.name}
-                  className="group flex flex-col items-center gap-3 transition-all duration-500"
-                  style={{ transitionDelay: isInView ? `${(gi * 200) + (i * 80)}ms` : "0ms" }}
+                  key={`img-${i}`}
+                  className="flex-shrink-0 h-16 w-28 md:h-20 md:w-36 rounded-xl border border-border bg-card flex items-center justify-center p-3 hover:shadow-md hover:border-primary/20 transition-all"
                 >
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-xl border border-border bg-card flex items-center justify-center p-3 group-hover:shadow-md group-hover:border-primary/20 transition-all">
-                    <img
-                      src={logo.url}
-                      alt={logo.name}
-                      className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                      loading="lazy"
-                    />
-                  </div>
-                  <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                    {logo.name}
-                  </span>
+                  <img
+                    src={(item as any).src}
+                    alt={(item as any).alt}
+                    className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                    loading="lazy"
+                  />
                 </div>
-              ))}
-            </div>
+              ) : (
+                <div
+                  key={`text-${i}`}
+                  className="flex-shrink-0 h-16 w-28 md:h-20 md:w-36 rounded-xl border border-border bg-card flex flex-col items-center justify-center p-3 hover:shadow-md hover:border-primary/20 transition-all"
+                >
+                  <span className="font-heading font-bold text-foreground text-sm md:text-base">{(item as any).name}</span>
+                  <span className="text-[10px] text-muted-foreground">{(item as any).subtitle}</span>
+                </div>
+              )
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
