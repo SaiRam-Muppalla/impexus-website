@@ -1,5 +1,5 @@
 const logos = [
-  { src: "/logos/msme.png", alt: "MSME" },
+  { src: "/logos/msme.jpg", alt: "MSME" },
   { src: "/logos/aicte2.png", alt: "AICTE" },
   { src: "/logos/microsoft.svg", alt: "Microsoft" },
   { src: "/logos/google.svg", alt: "Google" },
