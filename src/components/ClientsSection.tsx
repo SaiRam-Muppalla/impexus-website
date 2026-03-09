@@ -1,13 +1,10 @@
 const logos = [
   { src: "/logos/msme.png", alt: "MSME" },
   { src: "/logos/aicte2.png", alt: "AICTE" },
-  { src: "/logos/apssdc.png", alt: "APSCHE" },
-  { src: "/logos/apsdc.png", alt: "APSDC" },
-  { src: "/logos/task.jpg", alt: "TASK" },
   { src: "/logos/microsoft.svg", alt: "Microsoft" },
   { src: "/logos/google.svg", alt: "Google" },
   { src: "/logos/anthropic.svg", alt: "Anthropic" },
-  { src: "/logos/lovable.png", alt: "Lovable" },
+  { src: "/logos/task.jpg", alt: "TASK" },
 ];
 
 const ClientsSection = () => {
@@ -28,15 +25,16 @@ const ClientsSection = () => {
           <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[hsl(var(--section-dark))] to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[hsl(var(--section-dark))] to-transparent z-10" />
 
-          <div className="flex animate-scroll-left w-max gap-10 items-center">
-            {[...logos, ...logos].map((logo, i) => (
-              <img
-                key={i}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-14 md:h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 flex-shrink-0"
-                loading="lazy"
-              />
+          <div className="flex animate-scroll-left w-max items-center gap-16 md:gap-24">
+            {[...logos, ...logos, ...logos].map((logo, i) => (
+              <div key={i} className="flex-shrink-0 flex items-center justify-center h-12 w-32">
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="max-h-12 max-w-[120px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                />
+              </div>
             ))}
           </div>
         </div>

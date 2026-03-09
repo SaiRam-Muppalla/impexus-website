@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -92,13 +92,6 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <div className="flex gap-4 pt-3 border-t border-border">
-            {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
-              <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </nav>

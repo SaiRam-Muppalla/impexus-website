@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -46,13 +46,9 @@ const Footer = () => {
 
       <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm opacity-50">© 2025 Impexus Technologies. All rights reserved.</p>
-        <div className="flex gap-4">
-          {[Instagram, Linkedin, Facebook, Twitter].map((Icon, i) => (
-            <a key={i} href="#" className="opacity-50 hover:opacity-100 hover:text-primary transition-all">
-              <Icon size={18} />
-            </a>
-          ))}
-        </div>
+        <a href="https://www.instagram.com/impexus" target="_blank" rel="noopener noreferrer" className="opacity-50 hover:opacity-100 hover:text-primary transition-all">
+          <Instagram size={18} />
+        </a>
       </div>
     </footer>
   );
