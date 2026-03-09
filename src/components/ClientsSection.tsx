@@ -10,23 +10,19 @@ const logos = [
 
 const ClientsSection = () => {
   return (
-    <section className="section-light py-20 px-6 overflow-hidden">
+    <section className="section-light py-16 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2 text-center">Trusted By</p>
         <h2 className="text-3xl font-heading font-bold text-foreground text-center mb-10">
-          Our Clients & <span className="text-primary">Brand Partners</span>
+          Our Clients & Brand Partners
         </h2>
-        <div className="relative overflow-hidden group">
-          {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[hsl(var(--section-dark))] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[hsl(var(--section-dark))] to-transparent z-10" />
-          <div className="flex animate-scroll-left group-hover:[animation-play-state:paused] w-max gap-16 items-center py-4">
+        <div className="relative overflow-hidden">
+          <div className="flex animate-scroll-left w-max gap-12 items-center">
             {[...logos, ...logos].map((logo, i) => (
               <img
                 key={i}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-16 w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+                className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all flex-shrink-0"
               />
             ))}
           </div>

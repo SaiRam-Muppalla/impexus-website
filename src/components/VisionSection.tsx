@@ -5,7 +5,7 @@ const VisionSection = () => {
   const { ref, isInView } = useInView(0.15);
 
   return (
-    <section ref={ref} className="relative py-32 px-6 overflow-hidden">
+    <section ref={ref} className="relative py-28 px-6 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl" />
 
@@ -27,7 +27,7 @@ const VisionSection = () => {
         </h2>
 
         <p
-          className={`text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed transition-all duration-700 delay-300 ${
+          className={`text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 transition-all duration-700 delay-300 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -45,9 +45,8 @@ const VisionSection = () => {
             { label: "Skill First", sub: "Practical over theoretical" },
             { label: "Industry Ready", sub: "Aligned with real demand" },
             { label: "Campus Driven", sub: "Delivered where students learn" },
-          ].map((item, i) => (
-            <div key={item.label} className="text-center group">
-              <div className={`w-12 h-1 bg-primary/30 mx-auto mb-3 rounded-full group-hover:bg-primary transition-colors duration-300 ${i === 1 ? "bg-primary" : ""}`} />
+          ].map((item) => (
+            <div key={item.label} className="text-center">
               <p className="font-heading font-bold text-foreground text-lg">{item.label}</p>
               <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
             </div>

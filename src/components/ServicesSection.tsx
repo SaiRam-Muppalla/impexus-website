@@ -85,12 +85,12 @@ const ServiceCard = ({ service, index, isInView }: { service: typeof services[0]
 
   return (
     <div
-      className={`group rounded-xl border border-border bg-card p-6 hover:shadow-lg transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/20 ${
+      className={`group rounded-xl border border-border bg-card p-6 hover:shadow-lg transition-all duration-500 hover:-translate-y-1 ${
         isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       style={{ transitionDelay: isInView ? `${index * 60}ms` : "0ms" }}
     >
-      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300`}>
+      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
         <service.icon size={24} className="text-white" />
       </div>
       <h3 className="font-heading font-semibold text-lg text-foreground mb-3">{service.title}</h3>
@@ -105,10 +105,10 @@ const ServiceCard = ({ service, index, isInView }: { service: typeof services[0]
       {service.items.length > 2 && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-xs font-medium text-primary mt-3 hover:underline group/btn"
+          className="flex items-center gap-1 text-xs font-medium text-primary mt-3 hover:underline"
         >
           {expanded ? "Show less" : "Show more"}
-          <ChevronDown size={14} className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} />
+          <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
         </button>
       )}
     </div>
@@ -119,7 +119,7 @@ const ServicesSection = () => {
   const { ref, isInView } = useInView(0.05);
 
   return (
-    <section id="services" ref={ref} className="py-24 px-6 section-light">
+    <section id="services" ref={ref} className="py-20 px-6 section-light">
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-12 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">Our Services</p>

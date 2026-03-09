@@ -1,6 +1,5 @@
 import { useInView } from "@/hooks/useInView";
 import { GraduationCap, Building2, Rocket } from "lucide-react";
-import heroCampus from "@/assets/hero-campus.jpg";
 
 const features = [
   { icon: GraduationCap, title: "Campus Programs", desc: "Structured, industry-aligned skill development programs delivered within academic institutions." },
@@ -14,7 +13,7 @@ const HeroSection = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <img
-        src={heroCampus}
+        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
         alt="Students in campus learning environment"
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
@@ -32,18 +31,10 @@ const HeroSection = () => {
             Impexus partners with colleges and universities to deliver structured, industry-aligned skill development programs — enabling students to bridge the gap between education and industry.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <a
-              href="#services"
-              onClick={(e) => { e.preventDefault(); document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }); }}
-              className="bg-primary text-primary-foreground px-8 py-3.5 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5"
-            >
+            <a href="#services" onClick={(e) => { e.preventDefault(); document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }); }} className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
               Explore Programs
             </a>
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
-              className="border border-white/30 text-white px-8 py-3.5 rounded-lg font-medium hover:bg-white/10 hover:border-white/50 transition-all duration-300 hover:-translate-y-0.5"
-            >
+            <a href="#contact" onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }} className="border border-white/30 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors">
               Partner With Us
             </a>
           </div>
@@ -53,7 +44,7 @@ const HeroSection = () => {
           {features.map((f, i) => (
             <div
               key={f.title}
-              className={`feature-card rounded-xl p-6 text-left border border-white/10 transition-all duration-700 hover:border-primary/30 hover:-translate-y-1 ${
+              className={`feature-card rounded-xl p-6 text-left border border-white/10 transition-all duration-700 ${
                 isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: isInView ? `${300 + i * 150}ms` : "0ms" }}
@@ -63,13 +54,6 @@ const HeroSection = () => {
               <p className="text-white/60 text-sm">{f.desc}</p>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-1000 delay-1000 ${isInView ? "opacity-100" : "opacity-0"}`}>
-        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-1.5">
-          <div className="w-1.5 h-2.5 rounded-full bg-white/60 animate-bounce" />
         </div>
       </div>
     </section>
