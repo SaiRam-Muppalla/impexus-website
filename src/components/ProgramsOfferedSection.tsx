@@ -143,8 +143,8 @@ const ProgramsOfferedSection = () => {
           {[
             { icon: Calendar, value: "50+", label: "Programs Delivered" },
             { icon: Clock, value: "10,000+", label: "Training Hours" },
-            { icon: GraduationCap, value: "500+", label: "Students Impacted" },
-            { icon: Award, value: "20+", label: "Campus Partners" },
+            { icon: GraduationCap, value: "5,000+", label: "Students Impacted" },
+            { icon: Award, value: "10+", label: "Campus Partners" },
           ].map((stat) => (
             <div key={stat.label} className="text-center p-4 rounded-xl border border-border bg-card">
               <stat.icon size={24} className="text-primary mx-auto mb-2" />
