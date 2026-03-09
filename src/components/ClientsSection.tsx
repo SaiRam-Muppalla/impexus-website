@@ -31,7 +31,7 @@ const ClientsSection = () => {
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="max-h-12 max-w-[120px] w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  className="max-h-12 max-w-[120px] w-auto object-contain hover:grayscale transition-all duration-300"
                   loading="lazy"
                 />
               </div>
