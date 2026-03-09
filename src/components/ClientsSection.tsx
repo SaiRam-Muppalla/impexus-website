@@ -1,17 +1,13 @@
 const logos = [
-  { src: "/logos/aicte.png", alt: "AICTE" },
-  { src: "/logos/apssdc.png", alt: "APSSDC" },
+  { src: "/logos/msme.png", alt: "MSME" },
+  { src: "/logos/aicte2.png", alt: "AICTE" },
+  { src: "/logos/apssdc.png", alt: "APSCHE" },
+  { src: "/logos/apsdc.png", alt: "APSDC" },
   { src: "/logos/task.jpg", alt: "TASK" },
   { src: "/logos/microsoft.svg", alt: "Microsoft" },
   { src: "/logos/google.svg", alt: "Google" },
   { src: "/logos/anthropic.svg", alt: "Anthropic" },
-];
-
-const textLogos = [
-  { name: "MSME", subtitle: "Govt. of India" },
-  { name: "APSCHE", subtitle: "Andhra Pradesh" },
-  { name: "NSDC", subtitle: "Skill India" },
-  { name: "Lovable", subtitle: "AI Platform" },
+  { src: "/logos/lovable.png", alt: "Lovable" },
 ];
 
 const ClientsSection = () => {
@@ -28,35 +24,19 @@ const ClientsSection = () => {
           </p>
         </div>
 
-        {/* Scrolling logo strip */}
         <div className="relative overflow-hidden">
-          {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[hsl(var(--section-dark))] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[hsl(var(--section-dark))] to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[hsl(var(--section-dark))] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[hsl(var(--section-dark))] to-transparent z-10" />
 
-          <div className="flex animate-scroll-left w-max gap-10 items-center py-4">
-            {[...logos, ...textLogos.map(t => t), ...logos, ...textLogos.map(t => t)].map((item, i) => (
-              "src" in item ? (
-                <div
-                  key={`img-${i}`}
-                  className="flex-shrink-0 h-16 w-28 md:h-20 md:w-36 rounded-xl border border-border bg-card flex items-center justify-center p-3 hover:shadow-md hover:border-primary/20 transition-all"
-                >
-                  <img
-                    src={(item as any).src}
-                    alt={(item as any).alt}
-                    className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                    loading="lazy"
-                  />
-                </div>
-              ) : (
-                <div
-                  key={`text-${i}`}
-                  className="flex-shrink-0 h-16 w-28 md:h-20 md:w-36 rounded-xl border border-border bg-card flex flex-col items-center justify-center p-3 hover:shadow-md hover:border-primary/20 transition-all"
-                >
-                  <span className="font-heading font-bold text-foreground text-sm md:text-base">{(item as any).name}</span>
-                  <span className="text-[10px] text-muted-foreground">{(item as any).subtitle}</span>
-                </div>
-              )
+          <div className="flex animate-scroll-left w-max gap-10 items-center">
+            {[...logos, ...logos].map((logo, i) => (
+              <img
+                key={i}
+                src={logo.src}
+                alt={logo.alt}
+                className="h-14 md:h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 flex-shrink-0"
+                loading="lazy"
+              />
             ))}
           </div>
         </div>
