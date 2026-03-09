@@ -3,10 +3,10 @@ import { useInView } from "@/hooks/useInView";
 import { Users, GraduationCap, Building2, Handshake } from "lucide-react";
 
 const stats = [
-  { icon: Users, value: 500, suffix: "+", label: "Students Trained" },
-  { icon: GraduationCap, value: 95, suffix: "%", label: "Placement Rate" },
-  { icon: Building2, value: 20, suffix: "+", label: "College Partners" },
+  { icon: Users, value: 5000, suffix: "+", label: "Students Trained" },
+  { icon: Building2, value: 10, suffix: "+", label: "College Partners" },
   { icon: Handshake, value: 50, suffix: "+", label: "Industry Programs" },
+  { icon: GraduationCap, value: 10000, suffix: "+", label: "Training Hours" },
 ];
 
 function AnimatedCounter({ target, suffix, start }: { target: number; suffix: string; start: boolean }) {
