@@ -17,13 +17,13 @@ const AboutSection = () => {
         <div className={`transition-all duration-700 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
-              alt="Students collaborating on campus"
+              src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=600&q=80"
+              alt="Indian students collaborating in a coding workshop"
               className="rounded-xl h-48 w-full object-cover"
             />
             <img
-              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
-              alt="Team working together"
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80"
+              alt="Students working together on tech projects"
               className="rounded-xl h-48 w-full object-cover mt-8"
             />
           </div>

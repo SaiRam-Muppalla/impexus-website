@@ -39,7 +39,7 @@ const Footer = () => {
         <div>
           <h4 className="font-heading font-semibold mb-4">Contact</h4>
           <p className="text-sm opacity-70 mb-2">+91 7013547471</p>
-          <p className="text-sm opacity-70 mb-2">info@impexuss.com</p>
+          <p className="text-sm opacity-70 mb-2">info@impexus.co.in</p>
           <p className="text-sm opacity-70">Hyderabad, India</p>
         </div>
       </div>
