@@ -11,7 +11,7 @@ const HeroSection = () => {
   const { ref, isInView } = useInView(0.1);
 
   return (
-    <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <header id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden" role="banner">
       <img
         src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
         alt="Indian college students in a campus classroom"
@@ -56,7 +56,7 @@ const HeroSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </header>
   );
 };
 
