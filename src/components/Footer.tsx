@@ -2,7 +2,7 @@ import { Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="footer-section py-12 px-6">
+    <footer className="footer-section py-12 px-6" role="contentinfo" itemScope itemType="https://schema.org/WPFooter">
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
         <div className="md:col-span-1">
           <span className="text-2xl font-heading font-bold tracking-tight">
