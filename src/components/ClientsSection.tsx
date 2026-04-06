@@ -1,10 +1,10 @@
 const logos = [
-  { src: "/logos/msme.jpg", alt: "MSME" },
-  { src: "/logos/aicte2.png", alt: "AICTE" },
-  { src: "/logos/microsoft.svg", alt: "Microsoft" },
-  { src: "/logos/google.svg", alt: "Google" },
-  { src: "/logos/anthropic.svg", alt: "Anthropic" },
-  { src: "/logos/task.jpg", alt: "TASK" },
+  { src: "/logos/msme.jpg", alt: "MSME", className: "max-h-16 max-w-[160px]" },
+  { src: "/logos/aicte2.png", alt: "AICTE", className: "max-h-14 max-w-[140px]" },
+  { src: "/logos/microsoft.svg", alt: "Microsoft", className: "max-h-10 max-w-[120px]" },
+  { src: "/logos/google.svg", alt: "Google", className: "max-h-10 max-w-[120px]" },
+  { src: "/logos/anthropic.svg", alt: "Anthropic", className: "max-h-10 max-w-[120px]" },
+  { src: "/logos/task.jpg", alt: "TASK", className: "max-h-16 max-w-[160px]" },
 ];
 
 const ClientsSection = () => {
@@ -27,11 +27,11 @@ const ClientsSection = () => {
 
           <div className="flex animate-scroll-left w-max items-center gap-16 md:gap-24">
             {[...logos, ...logos, ...logos].map((logo, i) => (
-              <div key={i} className="flex-shrink-0 flex items-center justify-center h-12 w-32">
+              <div key={i} className="flex-shrink-0 flex items-center justify-center h-16 w-40">
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="max-h-12 max-w-[120px] w-auto object-contain hover:grayscale transition-all duration-300"
+                  className={`${logo.className || "max-h-12 max-w-[120px]"} w-auto object-contain hover:grayscale transition-all duration-300`}
                   loading="lazy"
                 />
               </div>

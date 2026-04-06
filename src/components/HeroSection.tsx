@@ -13,8 +13,8 @@ const HeroSection = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <img
-        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
-        alt="Students in campus learning environment"
+        src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80"
+        alt="Indian college students in a campus classroom"
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
       />
