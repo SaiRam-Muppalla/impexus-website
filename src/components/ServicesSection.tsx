@@ -1,8 +1,9 @@
 import { useInView } from "@/hooks/useInView";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Code, Globe, Cloud, Brain, Shield, Smartphone, Cpu, Wrench,
-  GraduationCap, Users, Trophy, FolderKanban, ChevronDown
+  GraduationCap, Users, Trophy, FolderKanban, ChevronDown, ArrowRight
 } from "lucide-react";
 
 const services = [
