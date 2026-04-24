@@ -1,20 +1,14 @@
 import { Instagram } from "lucide-react";
-import impexusLogo from "@/assets/impexus-logo.jpeg";
 
 const Footer = () => {
   return (
     <footer className="footer-section py-12 px-6" role="contentinfo" itemScope itemType="https://schema.org/WPFooter">
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
         <div className="md:col-span-1">
-          <div className="inline-block bg-white rounded-md p-2">
-            <img
-              src={impexusLogo}
-              alt="Impexus Technologies - Escalating The Excellence"
-              className="h-12 w-auto object-contain"
-              width="240"
-              height="96"
-            />
-          </div>
+          <span className="text-2xl font-heading font-bold tracking-tight">
+            <span className="text-primary">i</span>MPEX
+            <span className="text-primary">U</span>S
+          </span>
           <p className="text-sm opacity-70 mt-3">
             Campus Learning & Development platform partnering with colleges to deliver industry-aligned skill development programs.
           </p>
