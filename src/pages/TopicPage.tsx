@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ChevronRight, CheckCircle2, Clock, Users, ArrowRight, Home } from "lucide-react";
@@ -12,6 +13,10 @@ const SITE_URL = "https://impexus.co.in";
 const TopicPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const topic = slug ? getTopic(slug) : undefined;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!topic) return <Navigate to="/404" replace />;
 
