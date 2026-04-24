@@ -1,9 +1,19 @@
 import { useInView } from "@/hooks/useInView";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Heart, Presentation, Dumbbell, GraduationCap, Briefcase, Lightbulb,
   Calendar, Clock, Award, ChevronRight
 } from "lucide-react";
+
+// Map each category id to its detailed subpage slug.
+const categorySlugMap: Record<string, string> = {
+  csr: "csr-initiatives",
+  workshops: "workshops",
+  trainings: "training-programs",
+  campus: "campus-programs",
+  corporate: "corporate-hiring",
+};
 
 const programCategories = [
   {
@@ -122,18 +132,19 @@ const ProgramsOfferedSection = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {activeCategory.programs.map((prog, i) => (
-              <div
+              <Link
+                to={`/topic/${categorySlugMap[activeCategory.id]}`}
                 key={prog.title}
                 className="group rounded-xl border border-border bg-card p-5 hover:shadow-md hover:border-primary/20 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <div className="flex items-start gap-3">
                   <ChevronRight size={18} className="text-primary mt-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                   <div>
-                    <h4 className="font-heading font-semibold text-foreground mb-1">{prog.title}</h4>
+                    <h4 className="font-heading font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{prog.title}</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">{prog.desc}</p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
