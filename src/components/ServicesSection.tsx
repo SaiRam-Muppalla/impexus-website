@@ -103,10 +103,12 @@ const ServiceCard = ({ service, index, isInView }: { service: typeof services[0]
       }`}
       style={{ transitionDelay: isInView ? `${index * 60}ms` : "0ms" }}
     >
-      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-        <service.icon size={24} className="text-white" />
-      </div>
-      <h3 className="font-heading font-semibold text-lg text-foreground mb-3">{service.title}</h3>
+      <Link to={`/topic/${service.slug}`} aria-label={`Learn more about ${service.title}`} className="block">
+        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+          <service.icon size={24} className="text-white" />
+        </div>
+        <h3 className="font-heading font-semibold text-lg text-foreground mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
+      </Link>
       <ul className={`space-y-2 overflow-hidden transition-all duration-300 ${expanded ? "max-h-40" : "max-h-[4.5rem]"}`}>
         {service.items.map((item) => (
           <li key={item} className="text-sm text-muted-foreground flex items-start gap-2">
@@ -115,15 +117,24 @@ const ServiceCard = ({ service, index, isInView }: { service: typeof services[0]
           </li>
         ))}
       </ul>
-      {service.items.length > 2 && (
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-xs font-medium text-primary mt-3 hover:underline"
+      <div className="flex items-center justify-between mt-3 gap-2">
+        {service.items.length > 2 ? (
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+          >
+            {expanded ? "Show less" : "Show more"}
+            <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+          </button>
+        ) : <span />}
+        <Link
+          to={`/topic/${service.slug}`}
+          className="flex items-center gap-1 text-xs font-medium text-primary hover:underline"
         >
-          {expanded ? "Show less" : "Show more"}
-          <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
-        </button>
-      )}
+          Learn more
+          <ArrowRight size={12} />
+        </Link>
+      </div>
     </div>
   );
 };
