@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ChevronRight, CheckCircle2, Clock, Users, ArrowRight, Home } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -7,8 +7,9 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { getTopic, getRelatedTopics } from "@/data/topics";
+import NotFound from "@/pages/NotFound";
 
-const SITE_URL = "https://impexus.co.in";
+const SITE_URL = import.meta.env.VITE_SITE_URL ?? "https://impexus.co.in";
 
 const TopicPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -18,10 +19,11 @@ const TopicPage = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  if (!topic) return <Navigate to="/404" replace />;
+  if (!topic) return <NotFound />;
 
   const related = getRelatedTopics(topic.related);
   const canonical = `${SITE_URL}/topic/${topic.slug}`;
+  const ogImage = `${SITE_URL}${topic.ogImage ?? "/og-image.png"}`;
 
   // JSON-LD: Course + BreadcrumbList for richer SERP and AI extraction
   const courseSchema = {
@@ -46,7 +48,7 @@ const TopicPage = () => {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: topic.category, item: `${SITE_URL}/#${topic.categorySlug}` },
+      { "@type": "ListItem", position: 2, name: topic.categoryPlural, item: `${SITE_URL}/#${topic.categorySlug}` },
       { "@type": "ListItem", position: 3, name: topic.title, item: canonical },
     ],
   };
@@ -62,11 +64,13 @@ const TopicPage = () => {
         <meta property="og:title" content={`${topic.title} | Impexus Technologies`} />
         <meta property="og:description" content={topic.metaDescription} />
         <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${topic.title} | Impexus Technologies`} />
         <meta name="twitter:description" content={topic.metaDescription} />
-        <script type="application/ld+json">{JSON.stringify(courseSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <meta name="twitter:image" content={ogImage} />
+        <script type="application/ld+json">{JSON.stringify(courseSchema).replace(/<\//g, "<\\/")}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema).replace(/<\//g, "<\\/")}</script>
       </Helmet>
 
       <Navbar />
@@ -84,7 +88,7 @@ const TopicPage = () => {
               <li><ChevronRight size={14} /></li>
               <li>
                 <Link to={`/#${topic.categorySlug}`} className="hover:text-primary transition-colors">
-                  {topic.category}s
+                  {topic.categoryPlural}
                 </Link>
               </li>
               <li><ChevronRight size={14} /></li>
@@ -133,16 +137,16 @@ const TopicPage = () => {
 
           {/* Detailed sections */}
           <div className="space-y-10 mb-14">
-            {topic.sections.map((sec) => (
-              <section key={sec.heading} className="rounded-xl border border-border bg-card p-6 md:p-8">
+            {topic.sections.map((sec, i) => (
+              <section key={`section-${i}`} className="rounded-xl border border-border bg-card p-6 md:p-8">
                 <h2 className="text-xl md:text-2xl font-heading font-semibold text-foreground mb-3">
                   {sec.heading}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">{sec.body}</p>
                 {sec.bullets && (
                   <ul className="space-y-2 mt-4">
-                    {sec.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-3 text-muted-foreground">
+                    {sec.bullets.map((b, j) => (
+                      <li key={`bullet-${i}-${j}`} className="flex items-start gap-3 text-muted-foreground">
                         <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                         <span>{b}</span>
                       </li>
@@ -159,8 +163,8 @@ const TopicPage = () => {
               Key Outcomes
             </h2>
             <ul className="grid sm:grid-cols-2 gap-3">
-              {topic.outcomes.map((o) => (
-                <li key={o} className="flex items-start gap-3">
+              {topic.outcomes.map((o, i) => (
+                <li key={`outcome-${i}`} className="flex items-start gap-3">
                   <CheckCircle2 size={20} className="text-primary mt-0.5 shrink-0" />
                   <span className="text-foreground">{o}</span>
                 </li>

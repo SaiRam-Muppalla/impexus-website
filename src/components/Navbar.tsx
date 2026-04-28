@@ -25,28 +25,38 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (!isHome) return;
-    const sections = navLinks.map((l) => document.querySelector(l.href));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            const link = navLinks.find((l) => l.href === `#${id}`);
-            if (link) setActive(link.label);
-          }
-        });
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    sections.forEach((s) => s && observer.observe(s));
-    return () => observer.disconnect();
-  }, [isHome]);
+    let observer: IntersectionObserver | null = null;
+    const rafId = requestAnimationFrame(() => {
+      const sections = navLinks
+        .map((l) => document.querySelector(l.href))
+        .filter(Boolean) as Element[];
+
+      if (!sections.length) return;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              const link = navLinks.find((l) => l.href === `#${id}`);
+              if (link) setActive(link.label);
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      sections.forEach((el) => observer!.observe(el));
+    });
+    return () => {
+      cancelAnimationFrame(rafId);
+      observer?.disconnect();
+    };
+  }, [location.pathname]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     if (!isHome) {
-      navigate(`/${href}`);
+      navigate("/", { state: { scrollTo: href } });
     } else {
       const el = document.querySelector(href);
       if (el) el.scrollIntoView({ behavior: "smooth" });

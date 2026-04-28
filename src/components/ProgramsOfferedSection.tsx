@@ -6,8 +6,10 @@ import {
   Calendar, Clock, Award, ChevronRight
 } from "lucide-react";
 
+type CategoryId = "csr" | "workshops" | "trainings" | "campus" | "corporate";
+
 // Map each category id to its detailed subpage slug.
-const categorySlugMap: Record<string, string> = {
+const categorySlugMap: Record<CategoryId, string> = {
   csr: "csr-initiatives",
   workshops: "workshops",
   trainings: "training-programs",
@@ -89,6 +91,10 @@ const ProgramsOfferedSection = () => {
   const [activeTab, setActiveTab] = useState("csr");
 
   const activeCategory = programCategories.find((c) => c.id === activeTab)!;
+  const activeSlug = categorySlugMap[activeCategory.id as CategoryId];
+  if (!activeSlug) {
+    console.warn(`No slug found for category id: ${activeCategory.id}`);
+  }
 
   return (
     <section id="programs" ref={ref} className="py-20 px-6 section-light">
@@ -133,7 +139,7 @@ const ProgramsOfferedSection = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {activeCategory.programs.map((prog, i) => (
               <Link
-                to={`/topic/${categorySlugMap[activeCategory.id]}`}
+                to={`/topic/${activeSlug ?? ""}`}
                 key={prog.title}
                 className="group rounded-xl border border-border bg-card p-5 hover:shadow-md hover:border-primary/20 transition-all duration-300 hover:-translate-y-0.5"
               >

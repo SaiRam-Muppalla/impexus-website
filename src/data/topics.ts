@@ -11,6 +11,8 @@ export type Topic = {
   slug: string;
   category: "Service" | "Program" | "Initiative" | "Resource";
   categorySlug: string; // for breadcrumb label
+  categoryPlural: string; // explicit plural for breadcrumb display
+  ogImage?: string; // per-topic OG image path; falls back to /og-image.png
   title: string;
   tagline: string;
   metaDescription: string;
@@ -30,6 +32,7 @@ export const topics: Topic[] = [
     slug: "programming-cs-foundations",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Programming & CS Foundations",
     tagline: "Build a rock-solid base in computer science and modern programming languages.",
     metaDescription:
@@ -84,6 +87,7 @@ export const topics: Topic[] = [
     slug: "full-stack-web-development",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Full Stack Web Development",
     tagline: "From pixels to production — build complete web applications end to end.",
     metaDescription:
@@ -141,6 +145,7 @@ export const topics: Topic[] = [
     slug: "cloud-computing-devops",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Cloud Computing & DevOps",
     tagline: "Ship faster, scale safer — master the infrastructure of modern software.",
     metaDescription:
@@ -195,6 +200,7 @@ export const topics: Topic[] = [
     slug: "ai-ml-data-science",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "AI, ML & Data Science",
     tagline: "From data to decisions — build the intelligence layer of modern products.",
     metaDescription:
@@ -246,6 +252,7 @@ export const topics: Topic[] = [
     slug: "cybersecurity-ethical-hacking",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Cybersecurity & Ethical Hacking",
     tagline: "Think like an attacker — defend like a professional.",
     metaDescription:
@@ -291,6 +298,7 @@ export const topics: Topic[] = [
     slug: "mobile-app-development",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Mobile App Development",
     tagline: "Build apps that ship to the Play Store and App Store.",
     metaDescription:
@@ -330,6 +338,7 @@ export const topics: Topic[] = [
     slug: "emerging-technologies",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Emerging Technologies",
     tagline: "Stay ahead of the curve — Generative AI, Web3, IoT, and beyond.",
     metaDescription:
@@ -369,6 +378,7 @@ export const topics: Topic[] = [
     slug: "software-development-tools",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Software Development Tools",
     tagline: "Master the tools every professional engineer uses every day.",
     metaDescription:
@@ -408,6 +418,7 @@ export const topics: Topic[] = [
     slug: "placement-preparation",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Placement Preparation",
     tagline: "Crack the interview, land the offer — structured prep for campus placements.",
     metaDescription:
@@ -451,6 +462,7 @@ export const topics: Topic[] = [
     slug: "soft-skills-professional-dev",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Soft Skills & Professional Development",
     tagline: "Technical skills get the interview — soft skills get the offer.",
     metaDescription:
@@ -494,6 +506,7 @@ export const topics: Topic[] = [
     slug: "hackathons-innovation",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Hackathons & Innovation",
     tagline: "Real problems, real prototypes — learning that sticks.",
     metaDescription:
@@ -533,6 +546,7 @@ export const topics: Topic[] = [
     slug: "project-based-learning",
     category: "Service",
     categorySlug: "services",
+    categoryPlural: "Services",
     title: "Project-Based Learning",
     tagline: "Theory fades, projects stay — build a portfolio that speaks for you.",
     metaDescription:
@@ -574,6 +588,7 @@ export const topics: Topic[] = [
     slug: "csr-initiatives",
     category: "Initiative",
     categorySlug: "programs",
+    categoryPlural: "Initiatives",
     title: "CSR Initiatives",
     tagline: "Tech education as a force for equity.",
     metaDescription:
@@ -612,6 +627,7 @@ export const topics: Topic[] = [
     slug: "workshops",
     category: "Initiative",
     categorySlug: "programs",
+    categoryPlural: "Initiatives",
     title: "Workshops",
     tagline: "Intensive, focused, hands-on — skill bursts that fit a busy semester.",
     metaDescription:
@@ -655,6 +671,7 @@ export const topics: Topic[] = [
     slug: "training-programs",
     category: "Initiative",
     categorySlug: "programs",
+    categoryPlural: "Initiatives",
     title: "Training Programs",
     tagline: "Sustained learning that integrates with the academic calendar.",
     metaDescription:
@@ -698,6 +715,7 @@ export const topics: Topic[] = [
     slug: "campus-programs",
     category: "Initiative",
     categorySlug: "programs",
+    categoryPlural: "Initiatives",
     title: "Campus Programs",
     tagline: "End-to-end transformation of the campus tech ecosystem.",
     metaDescription:
@@ -736,6 +754,7 @@ export const topics: Topic[] = [
     slug: "corporate-hiring",
     category: "Initiative",
     categorySlug: "programs",
+    categoryPlural: "Initiatives",
     title: "Corporate Hiring",
     tagline: "Pre-assessed, job-ready talent — no more hiring guesswork.",
     metaDescription:

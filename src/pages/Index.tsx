@@ -25,15 +25,26 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const scrollTo = location.state?.scrollTo as string | undefined;
+    if (scrollTo) {
+      const el = document.querySelector(scrollTo);
+      if (el) {
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth" }))
+        );
+        return;
+      }
+    }
     if (location.hash) {
       const el = document.querySelector(location.hash);
       if (el) {
-        // Defer to allow sections to mount before scrolling
-        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 50);
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth" }))
+        );
+        return;
       }
-    } else {
-      window.scrollTo(0, 0);
     }
+    window.scrollTo(0, 0);
   }, [location]);
 
   return (
