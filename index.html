@@ -24,10 +24,21 @@
     <meta name="twitter:description" content="Industry-aligned skill development programs for colleges. Full Stack, AI/ML, Cloud, Cybersecurity training with placement support.">
     <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8b2bbb19-4e81-4da2-91ff-4abaf7bdc805/id-preview-cb1a7fa2--914492ac-7bfb-4fab-8fb4-465e591440cb.lovable.app-1772976422258.png">
 
-    <!-- Preconnect for performance -->
+    <!-- Preconnect for third-party origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- Fonts: preload → non-blocking stylesheet (avoids render-blocking @import) -->
+    <link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" />
+    </noscript>
 
     <!-- JSON-LD: Organization -->
     <script type="application/ld+json">

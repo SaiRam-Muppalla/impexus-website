@@ -17,6 +17,8 @@ const HeroSection = () => {
         alt="Indian college students in a campus classroom"
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
+        fetchPriority="high"
+        decoding="sync"
       />
       <div className="hero-overlay absolute inset-0" />
 
