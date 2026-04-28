@@ -94,19 +94,30 @@ const Navbar = () => {
           ))}
         </div>
 
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
+        <button
+          className="md:hidden p-2 rounded-md hover:bg-muted transition-colors"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-controls="mobile-nav-menu"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+        >
+          {open ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
         </button>
       </div>
 
-      <div className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300 ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}>
-        <div className="px-6 space-y-3">
+      <div
+        id="mobile-nav-menu"
+        role="menu"
+        className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300 ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}
+      >
+        <div className="px-6 space-y-1">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
+              role="menuitem"
               onClick={(e) => handleClick(e, link.href)}
-              className={`block text-sm font-medium ${active === link.label ? "text-primary" : "text-foreground/70"}`}
+              className={`block text-sm font-medium py-2 ${active === link.label ? "text-primary" : "text-foreground/70"}`}
             >
               {link.label}
             </a>
