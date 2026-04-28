@@ -2,7 +2,7 @@ import { useInView } from "@/hooks/useInView";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Heart, Presentation, Dumbbell, GraduationCap, Briefcase, Lightbulb,
+  Heart, Presentation, Dumbbell, GraduationCap, Briefcase,
   Calendar, Clock, Award, ChevronRight
 } from "lucide-react";
 
@@ -92,9 +92,6 @@ const ProgramsOfferedSection = () => {
 
   const activeCategory = programCategories.find((c) => c.id === activeTab)!;
   const activeSlug = categorySlugMap[activeCategory.id as CategoryId];
-  if (!activeSlug) {
-    console.warn(`No slug found for category id: ${activeCategory.id}`);
-  }
 
   return (
     <section id="programs" ref={ref} className="py-20 px-6 section-light">
@@ -137,7 +134,7 @@ const ProgramsOfferedSection = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {activeCategory.programs.map((prog, i) => (
+            {activeCategory.programs.map((prog) => (
               <Link
                 to={`/topic/${activeSlug ?? ""}`}
                 key={prog.title}

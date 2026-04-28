@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useInView } from "@/hooks/useInView";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "@/components/ui/sonner";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -24,22 +25,15 @@ const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
 
 const ContactSection = () => {
   const { ref, isInView } = useInView(0.15);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
+  const form = useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
+  const { isSubmitting } = form.formState;
 
   const onSubmit = async (data: ContactForm) => {
-    // Honeypot check (belt-and-suspenders on top of Zod)
     if (data._hp) return;
 
     if (!ENDPOINT) {
-      toast({
-        title: "Configuration error",
+      toast.error("Configuration error", {
         description: "Form endpoint is not configured. Please contact us directly.",
-        variant: "destructive",
       });
       return;
     }
@@ -60,17 +54,14 @@ const ContactSection = () => {
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      toast({
-        title: "Message sent!",
+      toast.success("Message sent!", {
         description: `Thanks ${data.name}, we'll get back to you within 24 hours.`,
       });
-      reset();
+      form.reset();
     } catch (err) {
       console.error("[contact] submission error:", err);
-      toast({
-        title: "Submission failed",
+      toast.error("Submission failed", {
         description: "Please try again or email us at info@impexus.co.in.",
-        variant: "destructive",
       });
     }
   };
@@ -122,139 +113,113 @@ const ContactSection = () => {
           </div>
 
           {/* Form */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="md:col-span-3 space-y-4"
-            aria-label="Partner enquiry form"
-            noValidate
-          >
-            {/* Honeypot — visually hidden, must stay empty */}
-            <div aria-hidden="true" className="hidden">
-              <label htmlFor="hp-field">Leave this blank</label>
-              <input id="hp-field" tabIndex={-1} autoComplete="off" {...register("_hp")} />
-            </div>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="md:col-span-3 space-y-4"
+              aria-label="Partner enquiry form"
+              noValidate
+            >
+              {/* Honeypot — visually hidden, must stay empty */}
+              <div aria-hidden="true" className="hidden">
+                <label htmlFor="hp-field">Leave this blank</label>
+                <input id="hp-field" tabIndex={-1} autoComplete="off" {...form.register("_hp")} />
+              </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-1">
-                  Full Name <span className="text-destructive" aria-hidden="true">*</span>
-                </label>
-                <Input
-                  id="contact-name"
-                  placeholder="e.g. Arjun Sharma"
-                  autoComplete="name"
-                  aria-required="true"
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? "err-name" : undefined}
-                  {...register("name")}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Name <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g. Arjun Sharma" autoComplete="name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                {errors.name && (
-                  <p id="err-name" role="alert" className="text-xs text-destructive mt-1">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
-              <div>
-                <label htmlFor="contact-email" className="block text-sm font-medium text-foreground mb-1">
-                  Email Address <span className="text-destructive" aria-hidden="true">*</span>
-                </label>
-                <Input
-                  id="contact-email"
-                  type="email"
-                  placeholder="e.g. principal@college.edu.in"
-                  autoComplete="email"
-                  aria-required="true"
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "err-email" : undefined}
-                  {...register("email")}
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email Address <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="e.g. principal@college.edu.in" autoComplete="email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                {errors.email && (
-                  <p id="err-email" role="alert" className="text-xs text-destructive mt-1">
-                    {errors.email.message}
-                  </p>
-                )}
               </div>
-            </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="contact-phone" className="block text-sm font-medium text-foreground mb-1">
-                  Phone Number <span className="text-destructive" aria-hidden="true">*</span>
-                </label>
-                <Input
-                  id="contact-phone"
-                  type="tel"
-                  placeholder="e.g. +91 98765 43210"
-                  autoComplete="tel"
-                  aria-required="true"
-                  aria-invalid={!!errors.phone}
-                  aria-describedby={errors.phone ? "err-phone" : undefined}
-                  {...register("phone")}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
+                      <FormControl>
+                        <Input type="tel" placeholder="e.g. +91 98765 43210" autoComplete="tel" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                {errors.phone && (
-                  <p id="err-phone" role="alert" className="text-xs text-destructive mt-1">
-                    {errors.phone.message}
-                  </p>
-                )}
-              </div>
-              <div>
-                <label htmlFor="contact-institution" className="block text-sm font-medium text-foreground mb-1">
-                  Institution / College <span className="text-destructive" aria-hidden="true">*</span>
-                </label>
-                <Input
-                  id="contact-institution"
-                  placeholder="e.g. JNTU Hyderabad"
-                  autoComplete="organization"
-                  aria-required="true"
-                  aria-invalid={!!errors.institution}
-                  aria-describedby={errors.institution ? "err-institution" : undefined}
-                  {...register("institution")}
+                <FormField
+                  control={form.control}
+                  name="institution"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Institution / College <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g. JNTU Hyderabad" autoComplete="organization" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                {errors.institution && (
-                  <p id="err-institution" role="alert" className="text-xs text-destructive mt-1">
-                    {errors.institution.message}
-                  </p>
-                )}
               </div>
-            </div>
 
-            <div>
-              <label htmlFor="contact-message" className="block text-sm font-medium text-foreground mb-1">
-                Message <span className="text-destructive" aria-hidden="true">*</span>
-              </label>
-              <Textarea
-                id="contact-message"
-                placeholder="Tell us about your requirements — program type, student batch size, preferred timeline…"
-                rows={5}
-                aria-required="true"
-                aria-invalid={!!errors.message}
-                aria-describedby={errors.message ? "err-message" : undefined}
-                {...register("message")}
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Message <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Tell us about your requirements — program type, student batch size, preferred timeline…"
+                        rows={5}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              {errors.message && (
-                <p id="err-message" role="alert" className="text-xs text-destructive mt-1">
-                  {errors.message.message}
-                </p>
-              )}
-            </div>
 
-            <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto gap-2 min-w-[10rem]">
-              {isSubmitting ? (
-                <>
-                  <span
-                    className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
-                    aria-hidden="true"
-                  />
-                  Sending…
-                </>
-              ) : (
-                <>
-                  <Send size={16} aria-hidden="true" />
-                  Send Message
-                </>
-              )}
-            </Button>
-          </form>
+              <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto gap-2 min-w-[10rem]">
+                {isSubmitting ? (
+                  <>
+                    <span
+                      className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+                      aria-hidden="true"
+                    />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} aria-hidden="true" />
+                    Send Message
+                  </>
+                )}
+              </Button>
+            </form>
+          </Form>
         </div>
       </div>
     </section>

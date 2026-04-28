@@ -11,10 +11,17 @@ node_modules
 dist
 dist-ssr
 
+# Bun lockfiles (use npm / package-lock.json instead)
+bun.lock
+bun.lockb
+
 # Environment variable files — never commit secrets
 .env
 .env.local
 .env.*.local
+
+# Lovable platform config (not needed outside Lovable)
+.lovable
 
 # Editor directories and files
 .vscode/*
