@@ -19,12 +19,20 @@ const AboutSection = () => {
             <img
               src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=600&q=80"
               alt="Indian students collaborating in a coding workshop"
+              width={600}
+              height={400}
               className="rounded-xl h-48 w-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <img
               src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80"
               alt="Students working together on tech projects"
+              width={600}
+              height={400}
               className="rounded-xl h-48 w-full object-cover mt-8"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
