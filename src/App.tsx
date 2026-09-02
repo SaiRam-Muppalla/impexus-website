@@ -19,7 +19,7 @@ const App = () => (
       <TooltipProvider>
         <SEOHead />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <ErrorBoundary>
             <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
               <Routes>
