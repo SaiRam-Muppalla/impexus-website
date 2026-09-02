@@ -61,7 +61,11 @@
   body {
     @apply bg-background text-foreground font-body;
     scroll-behavior: smooth;
+    /* entrance animations translate elements sideways; never expose a
+       horizontal scrollbar because of them */
+    overflow-x: hidden;
   }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
