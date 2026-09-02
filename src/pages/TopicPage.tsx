@@ -75,7 +75,7 @@ const TopicPage = () => {
 
       <Navbar />
 
-      <main className="flex-1 pt-24 pb-16">
+      <main id="main-content" className="flex-1 pt-24 pb-16">
         <div className="max-w-5xl mx-auto px-6">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-6">
