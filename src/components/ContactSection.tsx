@@ -32,11 +32,25 @@ const ContactSection = () => {
     if (data._hp) return;
 
     if (!ENDPOINT) {
-      toast.error("Configuration error", {
-        description: "Form endpoint is not configured. Please contact us directly.",
+      // No form backend configured — hand the enquiry to the visitor's mail
+      // client with everything pre-filled so nothing is silently dropped.
+      const subject = `Campus program enquiry — ${data.institution}`;
+      const body = [
+        `Name: ${data.name}`,
+        `Email: ${data.email}`,
+        `Phone: ${data.phone}`,
+        `Institution: ${data.institution}`,
+        "",
+        data.message,
+      ].join("\n");
+      window.location.href = `mailto:info@impexus.co.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      toast.success("Opening your email app", {
+        description: `Thanks ${data.name} — send the pre-filled email and we'll reply within 24 hours.`,
       });
+      form.reset();
       return;
     }
+
 
     try {
       // Apps Script requires Content-Type: text/plain to skip CORS preflight.
