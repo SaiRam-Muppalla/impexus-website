@@ -26,7 +26,7 @@ type ContactForm = z.infer<typeof contactSchema>;
 const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
 
 const ContactSection = () => {
-  const { ref, isInView } = useInView(0.15);
+  const { ref, isInView } = useInView(0.01);
   const form = useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
   const { isSubmitting } = form.formState;
 

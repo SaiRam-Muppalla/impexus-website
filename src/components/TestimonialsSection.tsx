@@ -84,7 +84,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: (typeof testimonials)[n
 );
 
 const TestimonialsSection = () => {
-  const { ref, isInView } = useInView(0.15);
+  const { ref, isInView } = useInView(0.01);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
