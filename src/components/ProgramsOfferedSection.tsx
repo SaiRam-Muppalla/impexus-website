@@ -143,7 +143,7 @@ const ProgramsOfferedSection = () => {
                 <div className="flex items-start gap-3">
                   <ChevronRight size={18} className="text-primary mt-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                   <div>
-                    <h4 className="font-heading font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{prog.title}</h4>
+                    <h3 className="font-heading font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{prog.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{prog.desc}</p>
                   </div>
                 </div>

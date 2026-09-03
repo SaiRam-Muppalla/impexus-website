@@ -37,7 +37,8 @@ const StatsSection = () => {
   const { ref, isInView } = useInView(0.3);
 
   return (
-    <section ref={ref} className="py-16 px-6 bg-primary">
+    <section ref={ref} className="py-16 px-6 bg-primary" aria-labelledby="stats-heading">
+      <h2 id="stats-heading" className="sr-only">Impexus campus training impact in numbers</h2>
       <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         {stats.map((stat) => (
           <div
