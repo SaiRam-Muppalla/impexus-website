@@ -26,7 +26,10 @@ type ContactForm = z.infer<typeof contactSchema>;
 
 const ContactSection = () => {
   const { ref, isInView } = useInView(0.01);
-  const form = useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: "", email: "", phone: "", message: "", _hp: "" },
+  });
   const { isSubmitting } = form.formState;
 
   const onSubmit = async (data: ContactForm) => {
