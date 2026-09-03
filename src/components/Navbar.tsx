@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import logoAsset from "@/assets/impexus-logo.jpg.asset.json";
 
 const navLinks = [
   { label: "Home", href: "#home" },

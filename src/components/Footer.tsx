@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
+import logoAsset from "@/assets/impexus-logo.jpg.asset.json";
 
 const programs: { label: string; slug: string }[] = [
   { label: "Full Stack Development",   slug: "full-stack-web-development" },
