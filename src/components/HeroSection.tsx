@@ -17,7 +17,6 @@ const HeroSection = () => {
         alt="Indian college students in a campus classroom"
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
-        // eslint-disable-next-line react/no-unknown-property
         {...{ fetchpriority: "high" }}
         decoding="sync"
       />

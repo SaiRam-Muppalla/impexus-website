@@ -7,13 +7,15 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Send, MapPin, Phone, Mail } from "lucide-react";
+import { Send, MapPin, Phone, Clock, ExternalLink } from "lucide-react";
 
 const contactSchema = z.object({
   name:        z.string().trim().min(1, "Name is required").max(100),
   email:       z.string().trim().email("Invalid email address").max(255),
   phone:       z.string().trim().min(10, "At least 10 digits").max(15).regex(/^[+\d\s-]+$/, "Invalid phone number"),
-  institution: z.string().trim().min(1, "Institution name is required").max(200),
+  program:     z.enum(["Web Development", "Mobile App Development", "Data Science & AI", "Programming Fundamentals"], {
+    required_error: "Please select a program",
+  }),
   message:     z.string().trim().min(10, "Message must be at least 10 characters").max(1000),
   // honeypot — must be empty; bots fill it, humans don't see it
   _hp:         z.string().max(0, "").optional(),
@@ -24,7 +26,7 @@ type ContactForm = z.infer<typeof contactSchema>;
 const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
 
 const ContactSection = () => {
-  const { ref, isInView } = useInView(0.15);
+  const { ref, isInView } = useInView(0.01);
   const form = useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
   const { isSubmitting } = form.formState;
 
@@ -34,12 +36,12 @@ const ContactSection = () => {
     if (!ENDPOINT) {
       // No form backend configured — hand the enquiry to the visitor's mail
       // client with everything pre-filled so nothing is silently dropped.
-      const subject = `Campus program enquiry — ${data.institution}`;
+      const subject = `Program enquiry — ${data.program}`;
       const body = [
         `Name: ${data.name}`,
         `Email: ${data.email}`,
         `Phone: ${data.phone}`,
-        `Institution: ${data.institution}`,
+        `Program interest: ${data.program}`,
         "",
         data.message,
       ].join("\n");
@@ -61,7 +63,7 @@ const ContactSection = () => {
           name:        data.name,
           email:       data.email,
           phone:       data.phone,
-          institution: data.institution,
+          program:     data.program,
           message:     data.message,
         }),
       });
@@ -81,57 +83,20 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" ref={ref} className="py-20 px-6">
+    <section id="contact" ref={ref} className="py-20 px-6" aria-labelledby="contact-heading">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-4 text-foreground">
-          Partner With <span className="text-primary">Impexus</span>
-        </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Colleges and institutions interested in introducing industry-focused technology learning programs can collaborate with us to create impactful student skill development initiatives.
-        </p>
+        <div className="mb-12 text-center">
+          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">Inquire About Our Programs and Start Your Journey</p>
+          <h2 id="contact-heading" className="text-3xl md:text-4xl font-heading font-bold text-foreground">Connect With Us</h2>
+          <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">Connect with Impexus Technologies to empower your future. We are dedicated to shaping innovators through hands-on learning and expert mentorship.</p>
+        </div>
 
-        <div className={`grid md:grid-cols-5 gap-10 transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          {/* Contact details */}
-          <div className="md:col-span-2 space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <Phone size={18} className="text-primary" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="font-heading font-semibold text-foreground">Phone</p>
-                <a href="tel:+917013547471" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  +91 7013547471
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <Mail size={18} className="text-primary" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="font-heading font-semibold text-foreground">Email</p>
-                <a href="mailto:info@impexus.co.in" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  info@impexus.co.in
-                </a>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <MapPin size={18} className="text-primary" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="font-heading font-semibold text-foreground">Location</p>
-                <p className="text-sm text-muted-foreground">Hyderabad, India</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Form */}
+        <div className={`grid items-start gap-8 lg:grid-cols-[1.35fr_0.85fr] transition-all duration-700 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="md:col-span-3 space-y-4"
-              aria-label="Partner enquiry form"
+              className="space-y-5 rounded-lg border border-border bg-card p-6 md:p-8"
+              aria-label="Program enquiry form"
               noValidate
             >
               {/* Honeypot — visually hidden, must stay empty */}
@@ -140,7 +105,7 @@ const ContactSection = () => {
                 <input id="hp-field" tabIndex={-1} autoComplete="off" {...form.register("_hp")} />
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-5">
                 <FormField
                   control={form.control}
                   name="name"
@@ -148,7 +113,7 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel>Full Name <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g. Arjun Sharma" autoComplete="name" {...field} />
+                        <Input placeholder="Your full name" autoComplete="name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -161,7 +126,7 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel>Email Address <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="e.g. principal@college.edu.in" autoComplete="email" {...field} />
+                        <Input type="email" placeholder="your@email.com" autoComplete="email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -169,7 +134,7 @@ const ContactSection = () => {
                 />
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-5">
                 <FormField
                   control={form.control}
                   name="phone"
@@ -177,7 +142,7 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel>Phone Number <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
                       <FormControl>
-                        <Input type="tel" placeholder="e.g. +91 98765 43210" autoComplete="tel" {...field} />
+                        <Input type="tel" placeholder="+91 7013547471" autoComplete="tel" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -185,12 +150,18 @@ const ContactSection = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="institution"
+                  name="program"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Institution / College <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
+                      <FormLabel>Program Interest <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g. JNTU Hyderabad" autoComplete="organization" {...field} />
+                        <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" {...field}>
+                          <option value="">Select a program</option>
+                          <option>Web Development</option>
+                          <option>Mobile App Development</option>
+                          <option>Data Science &amp; AI</option>
+                          <option>Programming Fundamentals</option>
+                        </select>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -206,7 +177,7 @@ const ContactSection = () => {
                     <FormLabel>Message <span className="text-destructive" aria-hidden="true">*</span></FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Tell us about your requirements — program type, student batch size, preferred timeline…"
+                        placeholder="Tell us about your goals..."
                         rows={5}
                         {...field}
                       />
@@ -228,12 +199,47 @@ const ContactSection = () => {
                 ) : (
                   <>
                     <Send size={16} aria-hidden="true" />
-                    Send Message
+                    Send Inquiry
                   </>
                 )}
               </Button>
             </form>
           </Form>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
+            <article className="rounded-lg border border-border bg-card p-5">
+              <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground"><Phone size={18} aria-hidden="true" /></span>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Phone</p>
+              <a href="tel:+917013547471" className="mt-1 block font-heading text-sm font-semibold text-foreground hover:text-primary">+91 70135 47471</a>
+            </article>
+            <article className="rounded-lg border border-border bg-card p-5">
+              <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary"><Clock size={18} aria-hidden="true" /></span>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Hours</p>
+              <p className="mt-1 font-heading text-sm font-semibold text-foreground">9 AM – 5 PM</p>
+              <p className="text-xs text-muted-foreground">Mon – Sat</p>
+            </article>
+
+            <article className="overflow-hidden rounded-lg border border-border bg-card sm:col-span-2">
+              <div className="contact-map-grid flex h-36 items-center justify-center border-b border-border">
+                <MapPin size={32} className="text-primary" aria-hidden="true" />
+              </div>
+              <div className="p-5">
+                <div className="flex items-start gap-3">
+                  <MapPin size={17} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Location</p>
+                    <address className="mt-1 text-sm not-italic leading-6 text-foreground">IMPEXUS Technologies, AU North Campus,<br />Andhra University, Visakhapatnam,<br />Andhra Pradesh 530003</address>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Andhra+University+North+Campus+Visakhapatnam" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">Get directions <ExternalLink size={13} aria-hidden="true" /></a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article className="rounded-lg border border-border bg-card p-5 sm:col-span-2">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Email</p>
+              <a href="mailto:info@impexus.co.in" className="mt-1 block text-sm font-medium text-foreground hover:text-primary">info@impexus.co.in</a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
