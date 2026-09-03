@@ -56,6 +56,9 @@
 }
 
 @layer base {
+  html {
+    overflow-x: hidden;
+  }
   * {
     @apply border-border;
   }
@@ -99,6 +102,46 @@
 @keyframes scroll-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+@keyframes testimonial-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
+@keyframes testimonial-right {
+  from { transform: translateX(calc(-50% - 0.5rem)); }
+  to { transform: translateX(0); }
+}
+
+@keyframes testimonial-in {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-testimonial-left {
+  animation: testimonial-left 70s linear infinite;
+}
+
+.animate-testimonial-right {
+  animation: testimonial-right 70s linear infinite;
+}
+
+.animate-testimonial-in {
+  animation: testimonial-in 450ms ease-out both;
+}
+
+.testimonial-marquee:hover > div,
+.testimonial-marquee:focus-within > div {
+  animation-play-state: paused;
+}
+
+.contact-map-grid {
+  background-color: hsl(var(--muted));
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.7) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.7) 1px, transparent 1px);
+  background-size: 2rem 2rem;
 }
 
 .animate-scroll-left {
