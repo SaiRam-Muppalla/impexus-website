@@ -58,7 +58,7 @@ const HeroSection = () => {
               style={{ transitionDelay: isInView ? `${300 + i * 150}ms` : "0ms" }}
             >
               <f.icon size={28} className="text-primary mb-3" />
-              <h3 className="font-heading font-semibold text-white text-lg mb-1">{f.title}</h3>
+              <h2 className="font-heading font-semibold text-white text-lg mb-1">{f.title}</h2>
               <p className="text-white/60 text-sm">{f.desc}</p>
             </div>
           ))}

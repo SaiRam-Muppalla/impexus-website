@@ -26,7 +26,7 @@ const BenefitsSection = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         <div className={`transition-all duration-700 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">For Students</p>
-          <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
+          <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
             Benefits for <span className="text-primary">Students</span>
           </h3>
           <p className="text-muted-foreground mb-6">
@@ -44,7 +44,7 @@ const BenefitsSection = () => {
 
         <div className={`transition-all duration-700 delay-200 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">For Institutions</p>
-          <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
+          <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
             Institutional <span className="text-primary">Collaboration</span>
           </h3>
           <p className="text-muted-foreground mb-6">
