@@ -75,9 +75,9 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur shadow-sm" : "bg-background/80 backdrop-blur"} border-b border-border`} role="navigation" aria-label="Main navigation">
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <a href="/" className="flex items-center gap-2" aria-label="Impexus Technologies home">
+        <a href="/" className="flex items-center" aria-label="Impexus Technologies home">
           <img
-            src={logoAsset.url}
+            src="/impexus-logo.jpg"
             alt="Impexus Technologies"
             width="990"
             height="461"
