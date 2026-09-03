@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Send, MapPin, Phone, Clock, ExternalLink } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   name:        z.string().trim().min(1, "Name is required").max(100),
@@ -23,8 +24,6 @@ const contactSchema = z.object({
 
 type ContactForm = z.infer<typeof contactSchema>;
 
-const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
-
 const ContactSection = () => {
   const { ref, isInView } = useInView(0.01);
   const form = useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
@@ -33,9 +32,24 @@ const ContactSection = () => {
   const onSubmit = async (data: ContactForm) => {
     if (data._hp) return;
 
-    if (!ENDPOINT) {
-      // No form backend configured — hand the enquiry to the visitor's mail
-      // client with everything pre-filled so nothing is silently dropped.
+    try {
+      const { error } = await supabase.from("enquiries").insert({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        program: data.program,
+        message: data.message,
+      });
+
+      if (error) throw error;
+
+      toast.success("Enquiry received!", {
+        description: `Thanks ${data.name}, our team will get back to you within 24 hours.`,
+      });
+      form.reset();
+    } catch (err) {
+      console.error("[contact] submission error:", err);
+      // Last-resort fallback so an enquiry is never silently lost.
       const subject = `Program enquiry — ${data.program}`;
       const body = [
         `Name: ${data.name}`,
@@ -45,41 +59,12 @@ const ContactSection = () => {
         "",
         data.message,
       ].join("\n");
-      window.location.href = `mailto:info@impexus.co.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      toast.success("Opening your email app", {
-        description: `Thanks ${data.name} — send the pre-filled email and we'll reply within 24 hours.`,
-      });
-      form.reset();
-      return;
-    }
-
-
-    try {
-      // Apps Script requires Content-Type: text/plain to skip CORS preflight.
-      const res = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({
-          name:        data.name,
-          email:       data.email,
-          phone:       data.phone,
-          program:     data.program,
-          message:     data.message,
-        }),
-      });
-
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-      toast.success("Message sent!", {
-        description: `Thanks ${data.name}, we'll get back to you within 24 hours.`,
-      });
-      form.reset();
-    } catch (err) {
-      console.error("[contact] submission error:", err);
-      toast.error("Submission failed", {
-        description: "Please try again or email us at info@impexus.co.in.",
+      window.location.href = `mailto:impexus.info@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      toast.error("Couldn't submit online", {
+        description: "We've opened your email app with the enquiry pre-filled — or call +91 70135 47471.",
       });
     }
+
   };
 
   return (
