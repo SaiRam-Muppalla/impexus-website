@@ -72,16 +72,16 @@ const Navbar = () => {
     >
       Skip to main content
     </a>
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur shadow-sm" : "bg-background/80 backdrop-blur"} border-b border-border`} role="navigation" aria-label="Main navigation">
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background transition-shadow duration-300 ${scrolled ? "shadow-sm" : ""} border-b border-border`} role="navigation" aria-label="Main navigation">
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <a href="/" className="flex items-center" aria-label="Impexus Technologies home">
+        <a href="/" className="flex items-center bg-brand-logo" aria-label="Impexus Technologies home">
           <img
             src="/impexus-logo.jpg"
             alt="Impexus Technologies"
             width="990"
             height="461"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-10 md:h-12 w-auto object-contain opacity-100 filter-none"
             loading="eager"
             decoding="async"
           />
