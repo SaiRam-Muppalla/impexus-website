@@ -18,10 +18,15 @@ const Footer = () => {
     <footer className="footer-section py-12 px-6" role="contentinfo" itemScope itemType="https://schema.org/WPFooter">
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
         <div className="md:col-span-1">
-          <span className="text-2xl font-heading font-bold tracking-tight">
-            <span className="text-primary">i</span>MPEX
-            <span className="text-primary">U</span>S
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="Impexus Technologies"
+            width="990"
+            height="461"
+            className="h-10 md:h-12 w-auto object-contain mb-3"
+            loading="lazy"
+            decoding="async"
+          />
           <p className="text-sm opacity-70 mt-3">
             Campus Learning & Development platform partnering with colleges to deliver industry-aligned skill development programs.
           </p>
