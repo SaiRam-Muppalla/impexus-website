@@ -28,7 +28,7 @@ const BenefitsSection = () => {
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">For Students</p>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
             Benefits for <span className="text-primary">Students</span>
-          </h3>
+          </h2>
           <p className="text-muted-foreground mb-6">
             Students participating in Impexus programs build confidence and capability before entering the workforce.
           </p>
@@ -46,7 +46,7 @@ const BenefitsSection = () => {
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">For Institutions</p>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
             Institutional <span className="text-primary">Collaboration</span>
-          </h3>
+          </h2>
           <p className="text-muted-foreground mb-6">
             Impexus collaborates with colleges and universities to build strong campus skill development ecosystems.
           </p>
