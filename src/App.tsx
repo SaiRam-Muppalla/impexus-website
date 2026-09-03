@@ -7,9 +7,10 @@ import { HelmetProvider } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
-const Index     = lazy(() => import("./pages/Index"));
-const TopicPage = lazy(() => import("./pages/TopicPage"));
-const NotFound  = lazy(() => import("./pages/NotFound"));
+const Index       = lazy(() => import("./pages/Index"));
+const TopicPage   = lazy(() => import("./pages/TopicPage"));
+const CaseStudies = lazy(() => import("./pages/CaseStudies"));
+const NotFound    = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
