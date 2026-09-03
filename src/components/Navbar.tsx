@@ -75,15 +75,17 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur shadow-sm" : "bg-background/80 backdrop-blur"} border-b border-border`} role="navigation" aria-label="Main navigation">
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl font-heading font-bold tracking-tight">
-            <span className="text-primary">i</span>MPEX
-            <span className="text-primary">U</span>S
-          </span>
-          <span className="hidden sm:block text-[10px] text-muted-foreground tracking-widest">
-            - Escalating The Excellence -
-          </span>
-        </div>
+        <a href="/" className="flex items-center" aria-label="Impexus Technologies home">
+          <img
+            src="/impexus-logo.jpg"
+            alt="Impexus Technologies"
+            width="990"
+            height="461"
+            className="h-10 md:h-12 w-auto object-contain"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
