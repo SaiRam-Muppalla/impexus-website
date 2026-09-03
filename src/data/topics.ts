@@ -785,7 +785,134 @@ export const topics: Topic[] = [
     audience: "Technology companies, IT services, product startups, BFSI tech teams",
     related: ["placement-preparation", "training-programs"],
   },
+  {
+    slug: "agentic-ai-development",
+    category: "Service",
+    categorySlug: "services",
+    categoryPlural: "Services",
+    title: "Agentic AI Development",
+    tagline: "Build autonomous AI agents that plan, use tools, and complete real work.",
+    metaDescription:
+      "Agentic AI training for engineering students — LLM agents, tool calling, RAG, multi-agent orchestration, MCP and evaluation. Hands-on campus program by Impexus.",
+    keywords: [
+      "agentic AI course",
+      "AI agents training",
+      "LLM tool calling",
+      "RAG training India",
+      "multi-agent systems",
+      "MCP protocol",
+    ],
+    heroBadge: "Frontier Track",
+    overview:
+      "Agentic AI moves beyond chatbots: systems that reason over a goal, choose tools, act, observe the result, and iterate. This track teaches students to design, build, evaluate and ship dependable agents on top of modern language models.",
+    sections: [
+      {
+        heading: "Foundations of LLM Agents",
+        body: "Students learn how a model becomes an agent — the reasoning loop, memory, planning strategies, and where autonomy helps versus where deterministic code is safer.",
+        bullets: [
+          "Prompting, context engineering and structured output",
+          "The reason → act → observe loop",
+          "Short-term memory, long-term memory and state",
+          "Planning patterns: single-shot, ReAct, plan-and-execute",
+        ],
+      },
+      {
+        heading: "Tool Use, RAG and Integrations",
+        body: "Agents become useful when they can reach real systems. We cover function/tool calling, retrieval-augmented generation over private data, vector search, and connecting external services safely.",
+        bullets: [
+          "Function and tool calling with typed schemas",
+          "Embeddings, vector databases and retrieval pipelines",
+          "Model Context Protocol (MCP) and connectors",
+          "API integration, authentication and rate handling",
+        ],
+      },
+      {
+        heading: "Multi-Agent Orchestration",
+        body: "Larger problems are split across specialist agents. Students build supervisor/worker topologies, hand-offs, shared state, and human-in-the-loop approval gates for risky actions.",
+      },
+      {
+        heading: "Evaluation, Safety and Cost",
+        body: "Production agents need guardrails. We teach evaluation harnesses, tracing, failure taxonomies, prompt-injection defence, token/cost budgeting and latency tuning.",
+      },
+      {
+        heading: "Capstone Agent Project",
+        body: "Every student ships a working agent — a research assistant, campus support agent, data analyst or workflow automation bot — with an evaluation report and a live demo.",
+      },
+    ],
+    outcomes: [
+      "Design and ship a production-shaped AI agent end to end",
+      "Implement tool calling, RAG and memory correctly",
+      "Orchestrate multi-agent workflows with human approval steps",
+      "Evaluate agents for accuracy, safety, latency and cost",
+    ],
+    duration: "6–8 weeks (60+ hours, project-based)",
+    audience: "Pre-final and final year CSE/IT/AI-DS students, faculty upskilling cohorts",
+    related: ["ai-ml-data-science", "latest-technology-trends", "emerging-technologies"],
+  },
+  {
+    slug: "latest-technology-trends",
+    category: "Service",
+    categorySlug: "services",
+    categoryPlural: "Services",
+    title: "Latest Technology Trends",
+    tagline: "Stay current with the technologies reshaping engineering work right now.",
+    metaDescription:
+      "Latest technology training for campuses — generative AI, AI-assisted engineering, edge AI, platform engineering, quantum basics and modern data stacks. Impexus campus programs.",
+    keywords: [
+      "latest technology training",
+      "generative AI course",
+      "AI assisted coding",
+      "edge AI",
+      "platform engineering",
+      "future skills India",
+    ],
+    heroBadge: "Future Skills",
+    overview:
+      "Technology cycles now turn faster than curriculum revisions. This continuously refreshed track keeps students and faculty aligned with what industry is actually adopting this year, with hands-on labs rather than survey lectures.",
+    sections: [
+      {
+        heading: "Generative AI in Everyday Engineering",
+        body: "How modern teams use generative models day to day: code generation and review, documentation, test synthesis, design assistance, and the judgement needed to verify AI output.",
+        bullets: [
+          "AI-assisted development workflows",
+          "Prompt and context engineering for engineers",
+          "Reviewing, testing and trusting generated code",
+        ],
+      },
+      {
+        heading: "Modern Application Platforms",
+        body: "Serverless runtimes, edge compute, real-time data, and typed full-stack toolchains — the delivery stack most new products are built on today.",
+        bullets: [
+          "Serverless and edge functions",
+          "Realtime APIs, streaming and event-driven design",
+          "Platform engineering and internal developer tooling",
+        ],
+      },
+      {
+        heading: "Data, Vector and Analytics Stack",
+        body: "The shift from batch warehouses to hybrid systems: vector stores alongside relational data, semantic search, and analytics that feed AI features directly.",
+      },
+      {
+        heading: "Emerging Frontiers",
+        body: "Structured exposure to areas maturing fast — on-device and edge AI, computer vision at scale, robotics interfaces, blockchain and Web3 use cases, IoT, and quantum computing fundamentals.",
+      },
+      {
+        heading: "Continuous Refresh Model",
+        body: "Module content is reviewed each cycle against hiring demand and partner-company stacks, so campuses teach current tools instead of last decade's defaults.",
+      },
+    ],
+    outcomes: [
+      "Work fluently with AI-assisted engineering workflows",
+      "Build and deploy on modern serverless and edge platforms",
+      "Explain and prototype with current data and vector tooling",
+      "Enter interviews conversant in the technologies employers are adopting",
+    ],
+    duration: "4–6 weeks, refreshed every cycle",
+    audience: "All engineering years, faculty development programs, corporate upskilling batches",
+    related: ["agentic-ai-development", "emerging-technologies", "ai-ml-data-science"],
+  },
 ];
+
 
 export const getTopic = (slug: string): Topic | undefined =>
   topics.find((t) => t.slug === slug);

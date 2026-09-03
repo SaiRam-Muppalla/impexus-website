@@ -12,6 +12,9 @@ const stack = [
   { domain: "Cybersecurity", tech: "Kali Linux, Wireshark, Security Testing Tools" },
   { domain: "Mobile", tech: "Android (Java/Kotlin), Flutter, React Native" },
   { domain: "Emerging Tech", tech: "Generative AI, Prompt Engineering, Blockchain, IoT, Web3" },
+  { domain: "Agentic AI", tech: "LLM Agents, Tool Calling, RAG, Vector Databases, MCP, Multi-Agent Orchestration" },
+  { domain: "Latest Tech", tech: "AI-Assisted Development, Edge & Serverless, Realtime APIs, Platform Engineering, Edge AI" },
+
 ];
 
 const TechStackSection = () => {
