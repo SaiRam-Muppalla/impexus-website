@@ -16,7 +16,7 @@ const SEOHead = () => (
     <meta name="geo.placename" content="Hyderabad" />
     <meta name="geo.position" content="17.385;78.4867" />
     <meta name="ICBM" content="17.385, 78.4867" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </Helmet>
 );
 
