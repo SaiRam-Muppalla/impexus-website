@@ -23,7 +23,7 @@ const TopicPage = () => {
 
   const related = getRelatedTopics(topic.related);
   const canonical = `${SITE_URL}/topic/${topic.slug}`;
-  const ogImage = `${SITE_URL}${topic.ogImage ?? "/og-image.png"}`;
+  const ogImage = `${SITE_URL}${topic.ogImage ?? "/og-image.jpg"}`;
 
   // JSON-LD: Course + BreadcrumbList for richer SERP and AI extraction
   const courseSchema = {
