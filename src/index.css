@@ -35,6 +35,15 @@
 
     --radius: 0.5rem;
 
+    /* Motion design system — reuse these, don't invent new timings */
+    --motion-fast: 180ms;
+    --motion-normal: 320ms;
+    --motion-slow: 700ms;
+    --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+
     /* Custom tokens */
     --hero-overlay: 220 20% 8%;
     --hero-card-bg: 220 10% 20%;
@@ -156,4 +165,230 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ---------------- Motion system: reusable primitives ---------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(6px);
+  transition:
+    opacity var(--motion-slow) var(--ease-premium),
+    transform var(--motion-slow) var(--ease-premium),
+    filter var(--motion-slow) var(--ease-premium);
+  will-change: transform, opacity;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  will-change: auto;
+}
+
+.magnetic {
+  transition:
+    transform var(--motion-normal) var(--ease-premium),
+    background-color var(--motion-normal) var(--ease-smooth),
+    box-shadow var(--motion-normal) var(--ease-smooth);
+  will-change: transform;
+}
+.magnetic:active {
+  transform: scale(0.97) !important;
+}
+.magnetic .magnetic-icon {
+  transition: transform var(--motion-fast) var(--ease-premium);
+}
+.magnetic:hover .magnetic-icon {
+  transform: translateX(5px);
+}
+
+.tilt-card {
+  position: relative;
+  transition:
+    transform var(--motion-normal) var(--ease-premium),
+    box-shadow var(--motion-normal) var(--ease-smooth),
+    border-color var(--motion-normal) var(--ease-smooth);
+  transform-style: preserve-3d;
+}
+.tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    22rem circle at var(--mx, 50%) var(--my, 50%),
+    hsl(var(--primary) / 0.1),
+    transparent 65%
+  );
+  transition: opacity var(--motion-normal) var(--ease-smooth);
+}
+.tilt-card:hover::after { opacity: 1; }
+.tilt-card:hover { box-shadow: 0 18px 40px -20px hsl(var(--foreground) / 0.28); }
+.tilt-card .depth-icon { transition: transform var(--motion-normal) var(--ease-premium); }
+.tilt-card:hover .depth-icon { transform: translate3d(0, -4px, 24px); }
+
+/* Custom cursor */
+.cursor-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  transition: opacity var(--motion-normal) var(--ease-smooth);
+}
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: hsl(var(--primary));
+}
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid hsl(var(--primary) / 0.55);
+  display: grid;
+  place-items: center;
+  transition:
+    width var(--motion-fast) var(--ease-premium),
+    height var(--motion-fast) var(--ease-premium),
+    background-color var(--motion-fast) var(--ease-smooth),
+    border-color var(--motion-fast) var(--ease-smooth);
+}
+.cursor-ring.cursor-cta {
+  width: 56px;
+  height: 56px;
+  background: hsl(var(--primary) / 0.12);
+}
+.cursor-ring.cursor-media {
+  width: 68px;
+  height: 68px;
+  background: hsl(var(--primary) / 0.85);
+  border-color: transparent;
+}
+.cursor-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: hsl(var(--primary-foreground));
+}
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button { cursor: none; }
+}
+
+/* Branded intro */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: hsl(var(--background));
+  transition: opacity 500ms var(--ease-premium), transform 500ms var(--ease-premium);
+}
+.preloader.is-leaving {
+  opacity: 0;
+  transform: translateY(-1.5rem);
+}
+.preloader-mark {
+  position: relative;
+  overflow: hidden;
+  animation: preloader-in 500ms var(--ease-premium) both;
+}
+.preloader-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 35%, hsl(var(--primary) / 0.35) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: preloader-sweep 900ms var(--ease-smooth) 200ms both;
+}
+@keyframes preloader-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes preloader-sweep {
+  to { transform: translateX(110%); }
+}
+
+/* Hero typography stagger */
+.hero-line {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(8px);
+  animation: hero-line 900ms var(--ease-premium) both;
+}
+@keyframes hero-line {
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.hero-highlight {
+  display: inline-block;
+  transition: transform var(--motion-fast) var(--ease-premium), letter-spacing var(--motion-fast) var(--ease-premium), filter var(--motion-fast) var(--ease-smooth);
+}
+.hero-highlight:hover {
+  transform: translateY(-2px);
+  letter-spacing: 0.01em;
+  filter: brightness(1.15);
+}
+
+/* Image reveal + controlled zoom */
+.media-frame {
+  overflow: hidden;
+  clip-path: inset(8% 8% 8% 8% round 0.75rem);
+  transition: clip-path var(--motion-slow) var(--ease-premium);
+}
+.media-frame.is-visible { clip-path: inset(0 0 0 0 round 0.75rem); }
+.media-zoom {
+  transition: transform 600ms var(--ease-premium), filter var(--motion-normal) var(--ease-smooth);
+}
+.group:hover .media-zoom {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+/* Underline micro-interaction */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-normal) var(--ease-premium);
+}
+.link-underline:hover::after { transform: scaleX(1); }
+
+/* Page transition */
+.page-fade {
+  animation: page-fade var(--motion-normal) var(--ease-premium) both;
+}
+@keyframes page-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Marquee control */
+.marquee-track { animation: scroll-left 34s linear infinite; }
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; filter: none; }
+  .media-frame { clip-path: none; }
+  .cursor-layer { display: none; }
 }

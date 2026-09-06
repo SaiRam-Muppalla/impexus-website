@@ -6,6 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import SEOHead from "@/components/SEOHead";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import Preloader from "@/components/motion/Preloader";
+import CustomCursor from "@/components/motion/CustomCursor";
+import ScrollProgress from "@/components/motion/ScrollProgress";
+
 
 const Index       = lazy(() => import("./pages/Index"));
 const TopicPage   = lazy(() => import("./pages/TopicPage"));
@@ -20,6 +24,9 @@ const App = () => (
       <TooltipProvider>
         <SEOHead />
         <Sonner />
+        <Preloader />
+        <CustomCursor />
+        <ScrollProgress />
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <ErrorBoundary>
             <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
@@ -34,6 +41,7 @@ const App = () => (
             </Suspense>
           </ErrorBoundary>
         </BrowserRouter>
+
       </TooltipProvider>
     </QueryClientProvider>
   </HelmetProvider>
