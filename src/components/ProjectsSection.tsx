@@ -1,4 +1,5 @@
 import { useInView } from "@/hooks/useInView";
+import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   { title: "E-Commerce Platform", img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=600&q=80" },
@@ -24,22 +25,29 @@ const ProjectsSection = () => {
           {projects.map((p, i) => (
             <div
               key={p.title}
-              className={`group rounded-xl overflow-hidden border border-border transition-all duration-700 hover:shadow-lg ${
+              className={`group rounded-xl overflow-hidden border border-border transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl ${
                 isInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
               }`}
               style={{ transitionDelay: isInView ? `${i * 100}ms` : "0ms" }}
             >
-              <div className="relative overflow-hidden">
+              <div className={`relative overflow-hidden media-frame ${isInView ? "is-visible" : ""}`}>
                 <img
                   src={p.img}
                   alt={p.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="media-zoom w-full h-48 object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/15 transition-colors duration-300" />
               </div>
-              <div className="p-4 bg-card">
-                <h3 className="font-heading font-semibold text-foreground text-sm">{p.title}</h3>
+              <div className="p-4 bg-card flex items-center justify-between gap-2">
+                <h3 className="font-heading font-semibold text-foreground text-sm transition-transform duration-300 group-hover:-translate-y-0.5">
+                  {p.title}
+                </h3>
+                <ArrowUpRight
+                  size={16}
+                  aria-hidden="true"
+                  className="text-primary opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                />
               </div>
             </div>
           ))}

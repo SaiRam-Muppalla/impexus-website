@@ -1,5 +1,7 @@
 import { useInView } from "@/hooks/useInView";
+import TiltCard from "@/components/motion/TiltCard";
 import { BookOpen, Wrench, Layers, Building, Target } from "lucide-react";
+
 
 const reasons = [
   { icon: BookOpen, title: "Industry-Aligned Curriculum", desc: "Programs designed around technologies and practices currently used by employers." },
@@ -24,21 +26,22 @@ const TransformSection = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {reasons.map((card, i) => (
-            <div
+            <TiltCard
               key={card.title}
-              className={`rounded-xl border border-border bg-card p-6 text-center hover:shadow-md transition-all duration-700 hover:-translate-y-1 ${
+              className={`rounded-xl border border-border bg-card p-6 text-center transition-all duration-700 hover:border-primary/30 ${
                 isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: isInView ? `${i * 100}ms` : "0ms" }}
             >
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <div className="depth-icon w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <card.icon size={24} className="text-primary" />
               </div>
               <h3 className="font-heading font-semibold text-foreground mb-2 text-sm">{card.title}</h3>
               <p className="text-xs text-muted-foreground">{card.desc}</p>
-            </div>
+            </TiltCard>
           ))}
         </div>
+
       </div>
     </section>
   );
