@@ -9,6 +9,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import Preloader from "@/components/motion/Preloader";
 import CustomCursor from "@/components/motion/CustomCursor";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import PageTransition from "@/components/motion/PageTransition";
 
 
 const Index       = lazy(() => import("./pages/Index"));
@@ -30,14 +31,16 @@ const App = () => (
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <ErrorBoundary>
             <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/topic/:slug" element={<TopicPage />} />
-                <Route path="/case-studies" element={<CaseStudies />} />
+              <PageTransition>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/topic/:slug" element={<TopicPage />} />
+                  <Route path="/case-studies" element={<CaseStudies />} />
 
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </PageTransition>
             </Suspense>
           </ErrorBoundary>
         </BrowserRouter>

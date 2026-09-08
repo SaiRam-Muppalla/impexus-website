@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
+import Reveal from "@/components/motion/Reveal";
 
 const programs: { label: string; slug: string }[] = [
   { label: "Full Stack Development",   slug: "full-stack-web-development" },
