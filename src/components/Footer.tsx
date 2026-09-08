@@ -77,7 +77,7 @@ const Footer = () => {
         <a href="https://www.instagram.com/impexus" target="_blank" rel="noopener noreferrer" aria-label="Impexus on Instagram" className="opacity-50 hover:opacity-100 hover:text-primary transition-all">
           <Instagram size={18} aria-hidden="true" />
         </a>
-      </div>
+      </Reveal>
     </footer>
   );
 };
