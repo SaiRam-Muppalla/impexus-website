@@ -61,7 +61,7 @@ const stats = [
 ];
 
 const TestimonialCard = ({ testimonial }: { testimonial: (typeof testimonials)[number] }) => (
-  <article className="testimonial-card flex h-[18rem] w-[20rem] shrink-0 flex-col rounded-lg border border-border p-6 md:w-[23rem]">
+  <article className="testimonial-card flex h-[18rem] w-[20rem] shrink-0 flex-col rounded-lg border border-border p-6 transition-all duration-500 [transition-timing-function:var(--ease-premium)] hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_18px_40px_-24px_hsl(var(--primary)/0.6)] md:w-[23rem]">
     <div className="mb-4 flex items-center justify-between">
       <div className="flex" aria-label="5 out of 5 stars">
         {Array.from({ length: 5 }).map((_, index) => (

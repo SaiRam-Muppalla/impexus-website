@@ -1,3 +1,5 @@
+import Reveal from "@/components/motion/Reveal";
+
 const logos = [
   { src: "/logos/msme.jpg", alt: "MSME", className: "max-h-16 max-w-[160px]" },
   { src: "/logos/aicte2.png", alt: "AICTE", className: "max-h-14 max-w-[140px]" },
@@ -11,7 +13,7 @@ const ClientsSection = () => {
   return (
     <section className="py-20 px-6 section-light overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-2">Trusted By</p>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
             Our Partners & <span className="text-primary">Collaborators</span>
@@ -19,25 +21,25 @@ const ClientsSection = () => {
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             We work with leading government bodies, skill councils, and global technology companies to deliver impactful programs.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[hsl(var(--section-dark))] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[hsl(var(--section-dark))] to-transparent z-10" />
+        <Reveal delay={120} className="marquee relative overflow-hidden" threshold={0.05}>
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
 
-          <div className="flex animate-scroll-left w-max items-center gap-16 md:gap-24">
+          <div className="marquee-track flex w-max items-center gap-16 md:gap-24">
             {[...logos, ...logos, ...logos].map((logo, i) => (
               <div key={i} className="flex-shrink-0 flex items-center justify-center h-16 w-40">
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className={`${logo.className || "max-h-12 max-w-[120px]"} w-auto object-contain hover:grayscale transition-all duration-300`}
+                  className={`${logo.className || "max-h-12 max-w-[120px]"} w-auto object-contain transition-all duration-300 hover:grayscale hover:scale-110`}
                   loading="lazy"
                 />
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

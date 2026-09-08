@@ -72,16 +72,22 @@ const Navbar = () => {
     >
       Skip to main content
     </a>
-    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background transition-shadow duration-300 ${scrolled ? "shadow-sm" : ""} border-b border-border`} role="navigation" aria-label="Main navigation">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 border-b border-border backdrop-blur-md transition-all duration-500 [transition-timing-function:var(--ease-premium)] ${
+        scrolled ? "bg-background/85 shadow-[0_8px_30px_-16px_hsl(var(--foreground)/0.35)]" : "bg-background"
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
 
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+      <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 transition-all duration-500 [transition-timing-function:var(--ease-premium)] ${scrolled ? "py-2" : "py-3"}`}>
         <a href="/" className="flex items-center bg-brand-logo" aria-label="Impexus Technologies home">
           <img
             src="/impexus-logo.jpg"
             alt="Impexus Technologies"
             width="990"
             height="461"
-            className="h-10 md:h-12 w-auto object-contain opacity-100 filter-none"
+            className={`w-auto object-contain opacity-100 filter-none transition-all duration-500 [transition-timing-function:var(--ease-premium)] ${scrolled ? "h-9 md:h-10" : "h-10 md:h-12"}`}
             loading="eager"
             decoding="async"
           />
@@ -93,10 +99,10 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className={`text-sm font-medium transition-colors relative pb-1 ${
+              className={`text-sm font-medium relative pb-1 transition-colors duration-300 ${
                 active === link.label
                   ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded"
-                  : "text-foreground/70 hover:text-primary"
+                  : "text-foreground/70 hover:text-primary link-underline"
               }`}
             >
               {link.label}
@@ -105,7 +111,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="md:hidden p-2 rounded-md hover:bg-muted transition-colors"
+          className="md:hidden p-2 rounded-md hover:bg-muted transition-colors active:scale-95"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-controls="mobile-nav-menu"
@@ -118,16 +124,21 @@ const Navbar = () => {
       <div
         id="mobile-nav-menu"
         role="menu"
-        className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300 ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}
+        className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-500 [transition-timing-function:var(--ease-premium)] ${open ? "max-h-80 py-4" : "max-h-0 py-0"}`}
       >
         <div className="px-6 space-y-1">
-          {navLinks.map((link) => (
+          {navLinks.map((link, i) => (
             <a
               key={link.label}
               href={link.href}
               role="menuitem"
               onClick={(e) => handleClick(e, link.href)}
-              className={`block text-sm font-medium py-2 ${active === link.label ? "text-primary" : "text-foreground/70"}`}
+              style={{
+                transitionDelay: open ? `${80 + i * 60}ms` : "0ms",
+              }}
+              className={`block text-sm font-medium py-2 transition-all duration-400 [transition-timing-function:var(--ease-premium)] ${
+                open ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0"
+              } ${active === link.label ? "text-primary" : "text-foreground/70"}`}
             >
               {link.label}
             </a>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
+import Reveal from "@/components/motion/Reveal";
 
 const programs: { label: string; slug: string }[] = [
   { label: "Full Stack Development",   slug: "full-stack-web-development" },
@@ -15,7 +16,7 @@ const Footer = () => {
 
   return (
     <footer className="footer-section py-12 px-6" role="contentinfo" itemScope itemType="https://schema.org/WPFooter">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
+      <Reveal className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10" threshold={0.05}>
         <div className="md:col-span-1">
           <div className="inline-flex bg-brand-logo mb-3">
             <img
@@ -69,14 +70,14 @@ const Footer = () => {
           </p>
           <p className="text-sm opacity-70">Hyderabad, India</p>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <Reveal delay={120} threshold={0.05} className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm opacity-50">© {year} Impexus Technologies. All rights reserved.</p>
         <a href="https://www.instagram.com/impexus" target="_blank" rel="noopener noreferrer" aria-label="Impexus on Instagram" className="opacity-50 hover:opacity-100 hover:text-primary transition-all">
           <Instagram size={18} aria-hidden="true" />
         </a>
-      </div>
+      </Reveal>
     </footer>
   );
 };
